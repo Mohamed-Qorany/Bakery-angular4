@@ -1,0 +1,151 @@
+<div class="SelectedWorkletTitleContainer">
+    <div class="center-align left"><img src="assets/resources/IMG/icons/fav.png" align=""/></div>
+    <span class="left">{{workletName}}</span>
+</div>
+
+
+
+
+<div class="workletContainer">
+  <div class="workletContainerInner animated fadeIn">
+    <div class="progress favLoader" id="favLoader" *ngIf="!favoritLoaded"><div class="indeterminate"></div></div>
+
+
+    <div class="workletContainerInnerContent" id="favContent">
+      <div class="myContainer ListLayOut">
+        <div class="row">
+
+          <div class="row workletOperations">
+            <div class="col l6 m6 s12 flexCenterContainer">
+              <div class="input-field" style="top: 8px; width: 250px;">
+                <select [(ngModel)]="orderByValue">
+                  <option value="" disabled selected>Choose your option</option>
+                  <option [ngValue]="feild"  *ngFor="let feild of orderByFields">{{feild}}</option>
+                </select>
+                <label>Sort By: {{orderByValue}}</label>
+              </div>
+
+            </div>
+            <div class="col l6 m6 s12 ">
+             <div class="ListViewStyleContainer flexCenterContainer">
+               <span><b>View: </b></span>
+               <a class="waves-effect btn FlatBtn" [ngClass]="{'notActiveViewBtn': viewType != 'grid'}"
+                  (click)="setItemsView('grid')"><i class="material-icons left">view_module</i>Grid</a>
+               <a class="waves-effect btn FlatBtn" [ngClass]="{'notActiveViewBtn': viewType == 'grid'}"
+                  (click)="setItemsView('list')"><i class="material-icons left">list</i>List</a>
+             </div>
+              <div class="flexCenterContainer">
+                <div class="filterTableContainer right">
+                  <div class="input-field">
+                    <i class="material-icons prefix">local_bar</i>
+                    <input placeholder="Enter Filter" type="text" [(ngModel)]="workletItemsFilterText">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Worklet items Operations-->
+
+
+
+
+
+          <div class="col s12" style="padding: 0;" *ngIf="favoritLoaded">
+            <div class="row">
+              <div class="col s12" style="padding: 0;">
+                <ul class="tabs tabsContainer">
+                  <li class="tab col s3"><a class="active" href="#All">All {{workletName}} (22)</a></li>
+                  <li class="tab col s3"><a href="#MPaaS">MPaaS Actions (87)</a></li>
+                </ul>
+              </div>
+
+              <div id="All" class="col s12 tabContainer">
+                <!--/****************** Grid view ********************/-->
+                <div class="row" *ngIf="viewType == 'grid'">
+                  <div class="col l4 m6 s12" *ngFor="let item of favorites | filter : workletItemsFilterText | sortBy: orderBy; let i=index" >
+                    <div class="card hoverable center-align" onmouseover="showDominos(this.id,'grid')" onmouseleave="hideDominos(this.id,'grid')" id="{{i}}">
+                      <div class="card-image flexCenterContainer"><img src="{{item.icon}}" class="responsive-img"></div>
+                      <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">{{item.name}}</span>
+                        <p>{{item.subDescription}}</p>
+                        <p class="right-align" style="position: absolute; bottom: 5px; right: 15px;">
+                            <a (click)="openItemDescription(item)" data-modal="test" data-action="open">Offer >></a>
+                        </p>
+                      </div>
+                      <span class="card-title activator dominosBtn center-align" id="cardDominos{{i}}"><i class="material-icons">more_horiz</i></span>
+                      <div class="card-action right-align" id="cardAction{{i}}">${{item.price}}</div>
+                      <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                        <div class="collection CardCollection">
+                          <a href="#!" class="collection-item">One</a>
+                          <a href="#!" class="collection-item">Two</a>
+                          <a href="#!" class="collection-item">Three</a>
+                          <a href="#!" class="collection-item">Four</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!--/****************** list view ********************/-->
+                <div class="row" *ngIf="viewType == 'list'">
+                    <div class="" *ngFor="let item of favorites; let i=index" style="height: auto; position: relative;">
+                      <div class="card horizontal workletListItem" onmouseover="showDominos(this.id,'list')" onmouseleave="hideDominos(this.id,'grid')" id="l{{i}}">
+                        <div class="card-image"><img src="{{item.icon}}" align="" class="responsive-img"></div>
+                        <div class="card-stacked">
+                          <div class="card-content">
+                            <span class="card-title grey-text text-darken-4">{{item.name}}</span>
+                            <p>{{item.subDescription}}</p>
+                            <a class="left" (click)="openItemDescription(item)" data-modal="test" data-action="open" style="cursor: pointer;">Offer >></a>
+                            <span class="card-title activator dominosBtn center-align" id="listDominos{{i}}" onclick="openListDropDown(this.id)">
+                              <i class="material-icons">more_horiz</i>
+                            </span>
+                            <p class="" style="position: absolute; bottom: 10px; right: 15px;">
+                              <span class="right"> ${{item.price}}</span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="listViewDropDown" id="listViewDropDown{{i}}">
+                        <div class="collection CardCollection">
+                          <a href="#!" class="collection-item">One</a>
+                          <a href="#!" class="collection-item">Two</a>
+                          <a href="#!" class="collection-item">Three</a>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div id="MPaaS" class="col s12 tabContainer">MPaaS</div>
+            </div>
+
+
+            <!--/****************** pagination ********************/-->
+            <app-pagination
+                    (goPage)="goToPage($event)"
+                    (goNext)="onNext()"
+                    (goPrev)="onPrev()"
+                    [pagesToShow]="3"
+                    [page]="page"
+                    [perPage]="limit"
+                    [count]="total">
+            </app-pagination>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

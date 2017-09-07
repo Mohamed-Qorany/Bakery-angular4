@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bakery</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="assets/resources/css/Libs/materialize.min.css">
+    <link rel="stylesheet" href="assets/resources/css/Libs/animate.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/resources/css/HomePage.css" />
+    <link rel="stylesheet" type="text/css" href="assets/resources/css/mediaQuery.css" />
+  </head>
+  <body>
+    <app-root></app-root>
+
+
+
+    <a id="openCircularModale" data-modal="test" data-action="open" *ngIf="false"></a>
+    <div class="overlay"><div class="overlay__ripple"></div></div>
+    <div class="modal-wrapper">
+        <div class="modal" data-modal="test">
+            <i class="material-icons right closeModalBtn" data-action="close">highlight_off</i>
+            <div class="container">
+                <img id="itemImg" class="responsive-img center-block" align="">
+                <div id="ietemTitle"></div>
+                <p id="itemDesc"></p>
+                <div id="itemPrice"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="assets/resources/JS/Libs/jquery-2.2.3.min.js"></script>
+    <script src="assets/resources/JS/Libs/materialize.min.js"></script>
+    <script type="text/javascript" src="assets/resources/JS/mainScript.js"></script>
+  </body>
+</html>
