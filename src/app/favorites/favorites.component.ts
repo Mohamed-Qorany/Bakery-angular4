@@ -21,7 +21,7 @@ declare var $ :any;
 export class FavoritesComponent implements OnInit {
 
     url = "https://item.cfapps.io/cm/item";
-    workletName:String="Favorites";
+    workletName:String="Item";
     viewType="grid";
     workletItemsFilterText;
     allFavorites:any[];
@@ -110,5 +110,15 @@ export class FavoritesComponent implements OnInit {
 
         console.log(this.currentItem);
         $('#openCircularModale').click();
+    }
+
+
+    viewitemImg(index){
+        var loaderID = "#gridImgLoader"+index;
+        var imgID = "#gridImg"+index;
+
+        $(loaderID).fadeOut("fast", function () {
+            $(imgID).fadeIn('slow');
+        });
     }
 }

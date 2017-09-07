@@ -108,11 +108,11 @@ nav .nav-wrapper a{font-size: 18px;}
 .paganationBtnNumber.active{background: #EE6E73; color: #fff;}
 
 
-.card .card-image{  padding-top: 20px;  }
+.card .card-image{  padding-top: 20px;  height: 150px;}
 .card .card-content{height: 180px; padding-top: 10px; position: relative; overflow: hidden;}
 .card .card-content p a{cursor: pointer;}
 
-.card .card-image img{height: 150px; width: 150px; border-radius: 5px; border: 1.5px solid #fff;}
+.card .card-image img{height: 150px; width: 150px; border-radius: 5px; border: 1.5px solid #fff; display: none;}
 
 /*list*/
 .card.horizontal .card-image{padding: 5px;}

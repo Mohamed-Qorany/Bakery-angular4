@@ -14,6 +14,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PaginationComponent } from './pagination/pagination.component';
 import { FilterPipe } from './filter.pipe';
 import { SortByPipe } from './sort-by.pipe';
+import { CircularPreLoaderComponent } from './circular-pre-loader/circular-pre-loader.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashBoardComponent },
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
     AbsenceComponent,
     PaginationComponent,
     FilterPipe,
-    SortByPipe
+    SortByPipe,
+    CircularPreLoaderComponent
 
   ],
   imports: [

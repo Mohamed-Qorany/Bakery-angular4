@@ -1,5 +1,5 @@
 <div class="SelectedWorkletTitleContainer">
-    <div class="center-align left"><img src="assets/resources/IMG/icons/fav.png" align=""/></div>
+    <div class="center-align left"><img src="assets/resources/IMG/icons/009-star.png" alt=""/></div>
     <span class="left">{{workletName}}</span>
 </div>
 
@@ -64,7 +64,10 @@
                 <div class="row" *ngIf="viewType == 'grid'">
                   <div class="col l4 m6 s12" *ngFor="let item of favorites | filter : workletItemsFilterText | sortBy: orderBy; let i=index" >
                     <div class="card hoverable center-align" onmouseover="showDominos(this.id,'grid')" onmouseleave="hideDominos(this.id,'grid')" id="{{i}}">
-                      <div class="card-image flexCenterContainer"><img src="{{item.icon}}" class="responsive-img"></div>
+                      <div class="card-image flexCenterContainer">
+                        <img src="{{item.icon}}" class="responsive-img" (load)="viewitemImg(i)" id="gridImg{{i}}">
+                        <app-circular-pre-loader id="gridImgLoader{{i}}"></app-circular-pre-loader>
+                      </div>
                       <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">{{item.name}}</span>
                         <p>{{item.subDescription}}</p>
