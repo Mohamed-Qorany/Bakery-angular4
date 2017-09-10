@@ -78,7 +78,7 @@ nav .nav-wrapper a{font-size: 18px;}
 .ListViewStyleContainer > a{margin-left: 10px;}
 .ListViewStyleContainer > a.notActiveViewBtn{background: #F5F5F5; color: #2BBBAD;}
 .workletOperations{border: 1.3px solid #EFF0F2; position: relative; height: auto; padding-top: 20px;  background: #ffffff;}
-
+.sortItemsBtn{background: #2BBBAD; color: #fff; border: none; padding: 5px; position: relative; top: -10px; width: 120px;}
 .tabs.tabsContainer{background: transparent; border: 1.3px solid #EFF0F2; margin: 0;}
 .tabContainer{  background: #FAFAFA; border: 1.3px solid #EFF0F2; border-top: none;  }
 .tabContainer >div{  padding-top: 20px;  }
@@ -109,7 +109,7 @@ nav .nav-wrapper a{font-size: 18px;}
 
 
 .card .card-image{  padding-top: 20px;  height: 150px;}
-.card .card-content{height: 180px; padding-top: 10px; position: relative; overflow: hidden;}
+.card .card-content{height: 255px; padding-top: 10px; position: relative; overflow: hidden;}
 .card .card-content p a{cursor: pointer;}
 
 .card .card-image img{height: 150px; width: 150px; border-radius: 5px; border: 1.5px solid #fff; display: none;}

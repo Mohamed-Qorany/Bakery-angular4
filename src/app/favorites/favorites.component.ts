@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Directive, Output, EventEmitter, Input, SimpleChange } from '@angular/core';
 import {FavoritesService} from './favorites.service';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
@@ -26,8 +27,8 @@ export class FavoritesComponent implements OnInit {
     workletItemsFilterText;
     allFavorites:any[];
     favorites:any[];
-    orderByFields = ['title', 'description', 'price'];
-    orderByValue='ddd';
+    orderByFields:any[]= [{field:'title'},{field:'description'},{field:'price'}];
+    orderByValue='';
     favoritLoaded=false;
     currentItem;
     //paganation
@@ -108,17 +109,31 @@ export class FavoritesComponent implements OnInit {
         $('#itemImg').attr('src', this.currentItem.icon);
 
 
-        console.log(this.currentItem);
+        // console.log(this.currentItem);
         $('#openCircularModale').click();
     }
 
-
     viewitemImg(index){
-        var loaderID = "#gridImgLoader"+index;
-        var imgID = "#gridImg"+index;
+        if(this.viewType == "grid"){
+            var loaderID = "#gridImgLoader"+index;
+            var imgID = "#gridImg"+index;
+            $(loaderID).fadeOut("fast", function () {$(imgID).fadeIn('slow');});
+        }else{
+            var loaderID = "#listImgLoader"+index;
+            var imgID = "#listImg"+index;
+            $(loaderID).fadeOut("fast", function () {$(imgID).fadeIn('slow');});
+        }
+    }
 
-        $(loaderID).fadeOut("fast", function () {
-            $(imgID).fadeIn('slow');
-        });
+    
+    orderItems(orderby){
+        console.log("orderBy");
+        console.log(orderby);
+        this.orderByValue = orderby;
+    }
+
+    getValueFromSelect(val){
+        this.orderByValue=val;
+        console.log(this.orderByValue);
     }
 }
