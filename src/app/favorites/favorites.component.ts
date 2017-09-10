@@ -35,7 +35,7 @@ export class FavoritesComponent implements OnInit {
     loading = false;
     total = 0; //total number of items in all pages
     page = 1; //current page
-    limit = 6; //number of items per page
+    limit = 3; //number of items per page
     from:number = (this.page*this.limit)-this.limit;
     to:number = this.page*this.limit;
 
@@ -125,7 +125,7 @@ export class FavoritesComponent implements OnInit {
         }
     }
 
-    
+
     orderItems(orderby){
         console.log("orderBy");
         console.log(orderby);

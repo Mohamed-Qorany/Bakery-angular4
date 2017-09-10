@@ -44,6 +44,10 @@ nav .nav-wrapper a{font-size: 18px;}
 
 .searchForm{width: 270px; margin-left: 60px;position: relative;}
 .userListImage{height: 45px; width: 45px; border-radius: 50%; background: #fff; margin-left: 5px; margin-top: 8px; overflow: hidden;}
+.userListImage i{font-size: 35px;}
+
+
+
 .mobileSearchForm{position: relative; overflow: hidden; padding-left: 20px; background: #fff; padding-top: 5px; display: none;}
 .mobileSearchForm i{margin-top: 15px; color: #0FB1E0; font-weight: 600; }
 .mobileSearchForm >i{margin-top: 5px; cursor: pointer; position:absolute; right: 10px;  }
@@ -107,7 +111,7 @@ nav .nav-wrapper a{font-size: 18px;}
 .paganationBtnNumber{min-width: 50px; padding: 8px; position: relative; top: -8px; background: transparent; color: #0FB1E0;}
 .paganationBtnNumber.active{background: #EE6E73; color: #fff;}
 
-
+.card{ cursor: pointer;}
 .card .card-image{  padding-top: 20px;  height: 150px;}
 .card .card-content{height: 255px; padding-top: 10px; position: relative; overflow: hidden;}
 .card .card-content p a{cursor: pointer;}
