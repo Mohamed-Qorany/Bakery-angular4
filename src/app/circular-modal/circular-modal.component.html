@@ -1,0 +1,139 @@
+<div id="openCircularModal" class="ItemModal animated zoomIn">
+  <i class="material-icons closeModalBtn" style="position: fixed; top: 0px; right: 5px;" (click)="closeCircularModal()">highlight_off</i>
+
+  <div class="container">
+
+
+
+     <div class="row selectedImageContainer">
+         <div class="col l4 m5 s12">
+           <ul class="animated fadeInLeft">
+             <li>
+               <span class="ItemComponentLine hide-on-med-and-up">__</span>Water<span class="ItemComponentLine hide-on-small-only">__________</span></li>
+             <li>
+               <span class="ItemComponentLine hide-on-med-and-up">____</span>Calories 150<span class="ItemComponentLine hide-on-small-only">_______________</span>
+             </li>
+             <li class="hide-on-med-and-up"><span class="ItemComponentLine">______</span> Suggar</li>
+             <li class="hide-on-med-and-up"><span class="ItemComponentLine">__________</span> Coffee</li>
+             <li class="hide-on-med-and-up"><span class="ItemComponentLine">______________</span> Mill</li>
+           </ul>
+         </div>
+         <div class="col l4 m3 s12 flexCenterContainer">
+             <img class="responsive-img selectedImage animated zoomIn" id="activeImage" alt="" [src]="selectedItem.icon" (load)="viewRenderedActiveImage()"/>
+             <app-circular-pre-loader id="activeImageLoader"></app-circular-pre-loader>
+         </div>
+         <div class="col l4 m4 s12 hide-on-small-only">
+           <ul class="animated fadeInRight">
+             <li><span class="ItemComponentLine">_______</span> Suggar</li>
+             <li><span class="ItemComponentLine">______________</span> Coffee</li>
+             <li><span class="ItemComponentLine">__________________</span> Mill</li>
+           </ul>
+         </div>
+     </div>
+
+
+
+
+     <div class="row ItemDataContainer">
+       <p class="ItemDataPrice center-align">${{selectedItem.price}}</p>
+       <p class="ItemDataName center-align">{{selectedItem.name}}</p>
+         <div class="col s12">
+           <div *ngFor="let itemImage of selectedItem.itemIcons; let i=index">
+               <div class="ItemDataImage" id="ItemImage{{i}}"
+                    (click)="selectItemImage(itemImage.iconPath)"
+                    [ngClass]="{'activeImage': selectedItem.icon==itemImage.iconPath}">
+                 <img class="responsive-img center-block animated zoomIn" alt="" [src]="itemImage.iconPath" (load)="viewRenderedItemImg(i)" />
+               </div>
+             <!--not loaded-->
+             <div class="ItemDataImage center-align" id="ItemImageLoader{{i}}" style="display: inline-block; padding-top: 30px;">
+               <app-circular-pre-loader></app-circular-pre-loader>
+             </div>
+           </div>
+         </div>
+     </div>
+
+
+
+
+    <div class="row ItemDataControllersContainer animated fadeInUp">
+      <div class="col l5 m5 s12">
+          <ul class="collapsible" data-collapsible="accordion" id="accordions" style="margin: 0; padding: 0;">
+            <li class="accordion active" (click)="openAccordion('actions')"><div class="collapsible-header">Actions <i class="material-icons" style="">add</i></div></li>
+            <li class="accordion" (click)="openAccordion('categories')">
+              <div class="collapsible-header">Categories <i class="material-icons" style="">add</i></div>
+            </li>
+            <li class="accordion" (click)="openAccordion('activeSupplier')">
+              <div class="collapsible-header">Active Supplier <i class="material-icons">add</i></div>
+            </li>
+            <li class="accordion" (click)="openAccordion('product')">
+              <div class="collapsible-header">Product <i class="material-icons">add</i></div>
+            </li>
+            <li class="accordion" (click)="openAccordion('values')">
+              <div class="collapsible-header">Values <i class="material-icons">add</i></div>
+            </li>
+          </ul>
+      </div>
+      <div class="col l7 m7 s12">
+
+        <div class="openAccordion" *ngIf="openAccordions">
+            <div *ngIf="actions">
+                <div>Actions <i class="material-icons right closeAccordionBtn" (click)="closeAccordion()">remove</i></div>
+                <div class="buttonsContainer">
+                  <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> Edit</a>
+                  <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> Close</a>
+                  <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> Delete</a>
+                  <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> order</a>
+                  <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> stats & analytics</a>
+                  <p>
+                    <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
+                    <label for="filled-in-box">Deactivate</label>
+                  </p>
+                </div>
+            </div>
+
+            <div *ngIf="categories">
+              <div>Categories <i class="material-icons right closeAccordionBtn" (click)="closeAccordion()">remove</i></div>
+              <div class="buttonsContainer">
+                <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> Edit</a>
+                <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> Close</a>
+              </div>
+            </div>
+
+            <div *ngIf="activeSupplier">
+              <div>Active Supplier <i class="material-icons right closeAccordionBtn" (click)="closeAccordion()">remove</i></div>
+              <div class="buttonsContainer">
+                <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> Edit</a>
+                <p>
+                  <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
+                  <label for="filled-in-box">Deactivate</label>
+                </p>              </div>
+            </div>
+
+            <div *ngIf="product">
+              <div>Product <i class="material-icons right closeAccordionBtn" (click)="closeAccordion()">remove</i></div>
+              <div class="buttonsContainer">
+                <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> Edit</a>
+                <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> Close</a>
+              </div>
+            </div>
+
+
+            <div *ngIf="values">
+              <div>Values<i class="material-icons right closeAccordionBtn" (click)="closeAccordion()">remove</i></div>
+              <div class="buttonsContainer">
+                <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> Edit</a>
+                <p>
+                  <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
+                  <label for="filled-in-box">Deactivate</label>
+                </p>              </div>
+            </div>
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+    </div>
+</div>

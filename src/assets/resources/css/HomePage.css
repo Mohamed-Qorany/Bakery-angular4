@@ -18,6 +18,40 @@ body{ overflow-x: hidden; background: #EFF0F2;  }
     margin-left: 10%; margin-right: 10%;
 }
 .noSpace{padding: 0; margin: 0;}
+
+
+
+
+
+/*.zoomIn {*/
+    /*-webkit-animation: zoomIn .2s; !* Safari 4+ *!*/
+    /*-moz-animation:    zoomIn .2s; !* Fx 5+ *!*/
+    /*-o-animation:      zoomIn .2s; !* Opera 12+ *!*/
+    /*animation:         zoomIn .2s; !* IE 10+, Fx 29+ *!*/
+/*}*/
+.pulse {
+    -webkit-animation: pulse .2s; /* Safari 4+ */
+    -moz-animation:    pulse .2s; /* Fx 5+ */
+    -o-animation:      pulse .2s; /* Opera 12+ */
+    animation:         pulse .2s; /* IE 10+, Fx 29+ */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*************************************** Home page style ************************/
 nav{background: #0fb1e0; padding-left: 20px; height: 60px; box-shadow: none; font-size: 15px;}
 nav ul a{height: 60px;}
@@ -26,8 +60,11 @@ nav .nav-wrapper a{font-size: 18px;}
 .icon-Items{margin-top: 47px;}
 .icon-Item-container{height: 170px;}
 .icon-Item, .SelectedWorkletTitleContainer > div{height: 110px; width: 110px; background: #ffffff;
-    border: 1px solid #EBECED; border-radius: 50%;  cursor: pointer;}
-.icon-Item{margin: 10px auto; padding-top: 35px; overflow: hidden;}
+    border: 1px solid #EBECED; border-radius: 50%;  }
+.icon-Item{margin: 10px auto; padding-top: 35px; overflow: hidden;cursor: pointer;}
+
+
+
 /*.icon-Items .icon-Item-container:nth-child(1) .icon-Item{background: #1f99ee;}*/
 /*.icon-Items .icon-Item-container:nth-child(2) .icon-Item{background: #25c7ca;}*/
 /*.icon-Items .icon-Item-container:nth-child(3) .icon-Item{background: #ecb563;}*/
@@ -52,10 +89,16 @@ nav .nav-wrapper a{font-size: 18px;}
 .mobileSearchForm i{margin-top: 15px; color: #0FB1E0; font-weight: 600; }
 .mobileSearchForm >i{margin-top: 5px; cursor: pointer; position:absolute; right: 10px;  }
 
-.SelectedWorkletTitleContainer{padding: 6px; padding-bottom: 0; color: #222; border-bottom: 1px solid #E8E8E8; padding-left: 15px; position: relative; display: block; overflow: hidden;}
+.SelectedWorkletTitleContainer{padding: 6px; padding-bottom: 0; color: #222;
+    border-bottom: 1px solid #E8E8E8; padding-left: 15px; position: relative; display: block; overflow: hidden;}
 .SelectedWorkletTitleContainer > div{height: 40px; width: 40px; padding-top: 12px;}
 .SelectedWorkletTitleContainer > div img{ height: 21px; width: 21px; margin-top: -5px;}
 .SelectedWorkletTitleContainer > span{ margin: 10px; font-size: 16px; font-weight: 600;}
+
+
+
+
+
 .workletContainerInner{background: #fafafa; min-height: 78vh;  border: 1px solid #EFF0F2; padding: 0; margin: 0; }
 .workletContainerInner .progress{margin: 0; border-radius: 0;}
 .workletContainerInnerContent{ padding: 10px;}
@@ -76,6 +119,22 @@ nav .nav-wrapper a{font-size: 18px;}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**************************** list layout ****************************/
 /*.ListLayOut{border: 1px solid #EFF0F2;  padding-top: 20px;  }*/
 .ListViewStyleContainer{margin-top: 10px;}
@@ -84,7 +143,7 @@ nav .nav-wrapper a{font-size: 18px;}
 .workletOperations{border: 1.3px solid #EFF0F2; position: relative; height: auto; padding-top: 20px;  background: #ffffff;}
 .sortItemsBtn{background: #2BBBAD; color: #fff; border: none; padding: 5px; position: relative; top: -10px; width: 120px;}
 .tabs.tabsContainer{background: transparent; border: 1.3px solid #EFF0F2; margin: 0;}
-.tabContainer{  background: #FAFAFA; border: 1.3px solid #EFF0F2; border-top: none;  }
+.tabContainer{  background: #FAFAFA; border: 1.3px solid #EFF0F2;}
 .tabContainer >div{  padding-top: 20px;  }
 
 
@@ -139,6 +198,30 @@ nav .nav-wrapper a{font-size: 18px;}
 
 #ietemTitle{font-size: 25px; font-weight: 600; margin-bottom: 15px;}
 #itemPrice{color: #5F9FDF; font-size: 25px; text-align: right;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

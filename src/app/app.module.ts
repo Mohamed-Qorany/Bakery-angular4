@@ -15,6 +15,7 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { FilterPipe } from './filter.pipe';
 import { SortByPipe } from './sort-by.pipe';
 import { CircularPreLoaderComponent } from './circular-pre-loader/circular-pre-loader.component';
+import { CircularModalComponent } from './circular-modal/circular-modal.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashBoardComponent },
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
     PaginationComponent,
     FilterPipe,
     SortByPipe,
-    CircularPreLoaderComponent
+    CircularPreLoaderComponent,
+    CircularModalComponent
 
   ],
   imports: [

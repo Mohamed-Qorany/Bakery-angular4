@@ -49,12 +49,12 @@
 
 
                  <div class="row" style="padding: 0;" >
-                      <div class="col s12" style="padding: 0;" onclick="$('.listViewDropDown').fadeOut('fast');">
-                          <ul class="tabs tabsContainer">
-                              <li class="tab col s3"><a class="active" href="#All">{{workletName}} ({{total}})</a></li>
-                              <li class="tab col s3"><a href="#MPaaS">MPaaS Actions (87)</a></li>
-                          </ul>
-                      </div>
+                      <!--<div class="col s12" style="padding: 0;" onclick="$('.listViewDropDown').fadeOut('fast');">-->
+                          <!--<ul class="tabs tabsContainer">-->
+                              <!--<li class="tab col s3"><a class="active" href="#All">{{workletName}} ({{total}})</a></li>-->
+                              <!--<li class="tab col s3"><a href="#MPaaS">MPaaS Actions (87)</a></li>-->
+                          <!--</ul>-->
+                      <!--</div>-->
                       <!--end tabs list-->
 
                       <!--all items tab-->
@@ -123,7 +123,7 @@
                       </div>
                       <!--end all items tab-->
 
-                      <div id="MPaaS" class="col s12 tabContainer">MPaaS</div>
+                      <!--<div id="MPaaS" class="col s12 tabContainer">MPaaS</div>-->
                       <!-- end MPaaS tab-->
                  </div>
                  <!--end tabs row container-->
@@ -143,6 +143,10 @@
         </div>
     </div>
 </div>
+
+
+<app-circular-modal [selectedItem]="currentItem"></app-circular-modal>
+
 
 
 

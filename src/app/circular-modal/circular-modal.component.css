@@ -1,0 +1,47 @@
+.ItemModal{
+    position: fixed; top: 0; width: 100%; height: 100vh; background: #fff; z-index: 999999999; display: none;
+    overflow-y: scroll;
+}
+
+.ItemModal .selectedImageContainer{}
+.ItemModal .selectedImageContainer >div{height: 250px;}
+.ItemModal .selectedImageContainer >div:nth-child(1){text-align: right;}
+.ItemModal .selectedImageContainer >div .ItemComponentLine{color: #AFAFAF;}
+
+
+.ItemModal .selectedImageContainer .selectedImage{ height: 100%; position: relative; max-width: 250px; margin: 0 auto; display: none; }
+
+
+.ItemModal .ItemDataContainer .ItemDataPrice{color: #5F9FDF; font-size: 25px; margin-top: -15px;}
+.ItemModal .ItemDataContainer .ItemDataName{font-size: 25px; font-weight: 600; margin-bottom: 15px; margin-top: -30px;}
+.ItemModal .ItemDataContainer .ItemDataImage{
+    width: 100px; height: 100px; border: 1px solid #AFAFAF; float: left; overflow: hidden; margin-right: 5px; padding: 10px; cursor: pointer;
+    display: none;
+}
+.ItemModal .ItemDataContainer .ItemDataImage.activeImage {  border: 2px solid red;  }
+.ItemModal .ItemDataContainer .ItemDataImage img{height: 100%; position: relative; margin: 0 auto;  }
+
+
+
+
+.ItemModal .ItemDataControllersContainer{ padding-top: 10px;}
+#accordions{ box-shadow: none; position: relative; overflow: hidden; border: none;}
+#accordions .collapsible-header { position: relative; overflow: hidden;}
+#accordions .collapsible-header i{ position: absolute; right: 0; top: 15px;}
+.buttonsContainer{margin-top: 10px;}
+.buttonsContainer a{ margin-bottom: 10px; background: #EEEEEE; color: #50C6BA; box-shadow: none; text-transform: uppercase;}
+.openAccordion{border: 1px solid #EEEEEE; padding: 20px;}
+.closeAccordionBtn{cursor: pointer;}
+
+#accordions .accordion.active{background: #EEEEEE; color: red;}
+
+
+
+
+
+
+@media only screen and (max-width : 600px) {
+    .ItemModal .selectedImageContainer >div:nth-child(1),.ItemModal .selectedImageContainer >div:nth-child(3) {
+        height: auto; text-align: left;
+    }
+}
