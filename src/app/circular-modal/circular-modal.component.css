@@ -15,9 +15,10 @@
 .ItemModal .ItemDataContainer .ItemDataPrice{color: #5F9FDF; font-size: 25px; margin-top: -15px;}
 .ItemModal .ItemDataContainer .ItemDataName{font-size: 25px; font-weight: 600; margin-bottom: 15px; margin-top: -30px;}
 .ItemModal .ItemDataContainer .ItemDataImage{
-    width: 100px; height: 100px; border: 1px solid #AFAFAF; float: left; overflow: hidden; margin-right: 5px; padding: 10px; cursor: pointer;
+    width: 100px; height: 100px;  float: left; overflow: hidden; margin-right: 5px; padding: 10px; cursor: pointer;
     display: none;
 }
+.ItemModal .ItemDataContainer .ItemDataImage:hover{border: 1px solid grey;}
 .ItemModal .ItemDataContainer .ItemDataImage.activeImage {  border: 2px solid red;  }
 .ItemModal .ItemDataContainer .ItemDataImage img{height: 100%; position: relative; margin: 0 auto;  }
 
@@ -35,6 +36,7 @@
 
 #accordions .accordion.active{background: #EEEEEE; color: red;}
 
+#accordions .accordion:hover{color: red;}
 
 
 

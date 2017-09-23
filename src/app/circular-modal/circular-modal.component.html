@@ -1,5 +1,5 @@
 <div id="openCircularModal" class="ItemModal animated zoomIn">
-  <i class="material-icons closeModalBtn" style="position: fixed; top: 0px; right: 5px;" (click)="closeCircularModal()">highlight_off</i>
+  <i class="material-icons closeModalBtn right" style="right: 5px;" (click)="closeCircularModal()">highlight_off</i>
 
   <div class="container">
 
@@ -19,7 +19,7 @@
            </ul>
          </div>
          <div class="col l4 m3 s12 flexCenterContainer">
-             <img class="responsive-img selectedImage animated zoomIn" id="activeImage" alt="" [src]="selectedItem.icon" (load)="viewRenderedActiveImage()"/>
+             <img class="responsive-img selectedImage animated zoomIn" id="activeImage" alt="" [src]="selectedItem.activeIcon" (load)="viewRenderedActiveImage()"/>
              <app-circular-pre-loader id="activeImageLoader"></app-circular-pre-loader>
          </div>
          <div class="col l4 m4 s12 hide-on-small-only">
@@ -41,13 +41,21 @@
            <div *ngFor="let itemImage of selectedItem.itemIcons; let i=index">
                <div class="ItemDataImage" id="ItemImage{{i}}"
                     (click)="selectItemImage(itemImage.iconPath)"
-                    [ngClass]="{'activeImage': selectedItem.icon==itemImage.iconPath}">
+                    [ngClass]="{'activeImage': selectedItem.activeIcon==itemImage.iconPath}">
                  <img class="responsive-img center-block animated zoomIn" alt="" [src]="itemImage.iconPath" (load)="viewRenderedItemImg(i)" />
                </div>
              <!--not loaded-->
              <div class="ItemDataImage center-align" id="ItemImageLoader{{i}}" style="display: inline-block; padding-top: 30px;">
                <app-circular-pre-loader></app-circular-pre-loader>
              </div>
+           </div><br/>
+           <div class="file-field left">
+               <div class="btn FlatBtn">
+                   <span>Upload Item Image</span><input type="file" multiple>
+               </div>
+               <div class="file-path-wrapper">
+                   <input class="file-path validate" type="text"  placeholder="Upload one or more files">
+               </div>
            </div>
          </div>
      </div>

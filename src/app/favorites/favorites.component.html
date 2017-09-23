@@ -4,29 +4,25 @@
 </div>
 
 
-
-
 <div class="workletContainer">
     <div class="workletContainerInner animated fadeIn" >
         <div class="progress favLoader" id="favLoader" *ngIf="!favoritLoaded"><div class="indeterminate"></div></div>
-        <!--End loader bar-->
-
         <div class="workletContainerInnerContent" id="favContent">
             <div class="myContainer ListLayOut" >
                 <div class="row workletOperations" onclick="$('.listViewDropDown').fadeOut('fast');">
                     <div class="col l6 m6 s12 flexCenterContainer">
-                         <div class="input-field" style="top: 8px; width: 250px;">
-                              <select #selectedCategory name="jj">
+                         <div class="" style="top: 8px; width: 250px;">
+                              <label><b class="black-text">Sort By</b></label>
+                              <select #selectedCategory name="jj" class="browser-default">
                                 <option disabled selected>Choose your option</option>
                                 <option *ngFor="let item of orderByFields" [value]="item.field" >{{item.field}}</option>
                               </select>
-                              <label><b class="black-text">Sort By:</b> {{orderByValue}}</label>
                               <button (click)="getValueFromSelect(selectedCategory.value)" class="FlatBtn sortItemsBtn">Sort Items</button>
                          </div>
                     </div>
                     <div class="col l6 m6 s12 ">
                          <div class="ListViewStyleContainer flexCenterContainer">
-                             <span><b>View: </b></span>
+                             <label><b class="black-text">View</b></label>
                              <a class="waves-effect btn FlatBtn" [ngClass]="{'notActiveViewBtn': viewType != 'grid'}"
                                 (click)="setItemsView('grid')"><i class="material-icons left">view_module</i>Grid</a>
                              <a class="waves-effect btn FlatBtn" [ngClass]="{'notActiveViewBtn': viewType == 'grid'}"
@@ -43,26 +39,16 @@
                               </div>
                          </div>
                     </div>
-                </div>
-                <!--Workletitems Operations-->
+                </div><!--End WorkletItems Operations-->
 
 
 
-                 <div class="row" style="padding: 0;" >
-                      <!--<div class="col s12" style="padding: 0;" onclick="$('.listViewDropDown').fadeOut('fast');">-->
-                          <!--<ul class="tabs tabsContainer">-->
-                              <!--<li class="tab col s3"><a class="active" href="#All">{{workletName}} ({{total}})</a></li>-->
-                              <!--<li class="tab col s3"><a href="#MPaaS">MPaaS Actions (87)</a></li>-->
-                          <!--</ul>-->
-                      <!--</div>-->
-                      <!--end tabs list-->
-
-                      <!--all items tab-->
+                 <div class="row" style="padding: 0;">
                       <div id="All" class="col s12 tabContainer">
                           <!--/****************** Grid view ********************/-->
                           <div class="row" *ngIf="viewType == 'grid'">
                               <div class="col l4 m6 s12" *ngFor="let item of favorites | filter : workletItemsFilterText | sortBy: orderByValue; let i=index">
-                                  <div class="card hoverable center-align" onmouseover="showDominos(this.id,'grid')" onmouseleave="hideDominos(this.id,'grid')" id="{{i}}">
+                                  <div class="card hoverable center-align gridCard" onmouseover="showDominos(this.id,'grid')" onmouseleave="hideDominos(this.id,'grid')" id="{{i}}">
                                       <div class="card-image flexCenterContainer" (click)="openItemDescription(item)" data-modal="test" data-action="open">
                                           <img src="{{item.icon}}" class="responsive-img" (load)="viewitemImg(i)" id="gridImg{{i}}">
                                           <app-circular-pre-loader id="gridImgLoader{{i}}"></app-circular-pre-loader>
@@ -74,7 +60,7 @@
                                       <span class="card-title activator dominosBtn center-align" id="cardDominos{{i}}"><i class="material-icons">more_horiz</i></span>
                                       <div class="card-action right-align" id="cardAction{{i}}" (click)="openItemDescription(item)" data-modal="test" data-action="open">${{item.price}}</div>
                                       <div class="card-reveal">
-                                          <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                                          <span class="card-title grey-text text-darken-4 revealCloseBtn"><i class="material-icons right">close</i></span>
                                           <div class="collection CardCollection">
                                             <a href="#!" class="collection-item">One</a>
                                             <a href="#!" class="collection-item">Two</a>
@@ -82,8 +68,7 @@
                                             <a href="#!" class="collection-item">Four</a>
                                           </div>
                                       </div>
-                                  </div>
-                                  <!--end grid card-->
+                                  </div><!--end grid card-->
                               </div>
                           </div>
 
@@ -108,25 +93,18 @@
                                               </p>
                                           </div>
                                       </div>
-                                  </div>
-                                  <!--end list card-->
+                                  </div><!--end list card-->
                                   <div class="listViewDropDown" id="listViewDropDown{{i}}">
                                       <div class="collection CardCollection">
                                           <a href="#!" class="collection-item">One</a>
                                           <a href="#!" class="collection-item">Two</a>
                                           <a href="#!" class="collection-item">Three</a>
                                       </div>
-                                  </div>
-                                  <!--end domainos list-->
+                                  </div><!--end domainos list-->
                               </div>
                           </div>
                       </div>
-                      <!--end all items tab-->
-
-                      <!--<div id="MPaaS" class="col s12 tabContainer">MPaaS</div>-->
-                      <!-- end MPaaS tab-->
-                 </div>
-                 <!--end tabs row container-->
+                 </div><!--end tabs row container-->
 
 
                  <!--/****************** pagination ********************/-->
@@ -143,13 +121,7 @@
         </div>
     </div>
 </div>
-
-
 <app-circular-modal [selectedItem]="currentItem"></app-circular-modal>
-
-
-
-
 
 
 

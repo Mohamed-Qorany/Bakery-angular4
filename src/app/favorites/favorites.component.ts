@@ -1,16 +1,10 @@
 import { Component, OnInit,Directive, Output, EventEmitter, Input, SimpleChange } from '@angular/core';
 import {FavoritesService} from './favorites.service';
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs';
-
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
-
-import { ItemsSummary } from './items-summary';
+import 'rxjs/Rx';
 
 declare var jquery:any;
 declare var $ :any;
-
 
 
 @Component({
@@ -42,31 +36,22 @@ export class FavoritesComponent implements OnInit {
 
 
 
-    observableItemsSummary: Observable<ItemsSummary[]>
-    itemsSummaryResult:String="";
-    errorMessage: String;
-
-
-
-
     constructor(private _favoritesService: FavoritesService, private http:Http) {}
     ngOnInit() {
-        // this.allFavorites = this._favoritesService.getFavoriteItems();
-          this.http.get(this.url).subscribe((response: Response)=>{
-              const result = response.json();
-
-              this.allFavorites = result._embedded.item;
-              for (let item of this.allFavorites) {
-                  item.subDescription= item.description.substring(0,255);
-                  //get item icons
-                  this.http.get(item._links.icons.href).subscribe((iconsResponse: Response)=>{
-                      item.itemIcons= iconsResponse.json()._embedded.icon;
-                  });
-              }
-              this.total = this.allFavorites.length;
-              this.favorites=this.allFavorites.slice(this.from, this.to);
-              this.favoritLoaded=true;
-          });
+        this._favoritesService.getItems().subscribe((result) => {
+            this.allFavorites = result._embedded.item;
+            for (let item of this.allFavorites) {
+                item.subDescription= item.description.substring(0,255);
+                item.activeIcon= item.icon;
+                //get item icons
+                this.http.get(item._links.icons.href).subscribe((iconsResponse: Response)=>{
+                    item.itemIcons= iconsResponse.json()._embedded.icon;
+                });
+            }
+            this.total = this.allFavorites.length;
+            this.favorites=this.allFavorites.slice(this.from, this.to);
+            this.favoritLoaded=true;
+        });
     }
 
 
@@ -84,7 +69,6 @@ export class FavoritesComponent implements OnInit {
 
 
 
-
     //Item list UI controls
     setItemsView(viewType){this.viewType=viewType;}
 
@@ -92,12 +76,6 @@ export class FavoritesComponent implements OnInit {
         this.currentItem=currentItem;
         $('body').css({overflow: 'hidden', height: '100%'});
         $('#openCircularModal').fadeIn();
-        // $('#ietemTitle').text(this.currentItem.name);
-        // $('#itemDesc').text(this.currentItem.description);
-        // $('#itemPrice').text('$'+this.currentItem.price);
-        // $('#itemImg').attr('src', this.currentItem.icon);
-        // console.log(this.currentItem);
-        // $('#openCircularModale').click();
     }
 
     viewitemImg(index){
@@ -112,14 +90,6 @@ export class FavoritesComponent implements OnInit {
         }
     }
 
-    orderItems(orderby){
-        console.log("orderBy");
-        console.log(orderby);
-        this.orderByValue = orderby;
-    }
+    getValueFromSelect(val){this.orderByValue=val;}
 
-    getValueFromSelect(val){
-        this.orderByValue=val;
-        // console.log(this.orderByValue);
-    }
 }

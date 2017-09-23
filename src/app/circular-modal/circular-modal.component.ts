@@ -31,7 +31,8 @@ export class CircularModalComponent implements OnInit {
     }
 
     selectItemImage(selectedImage){
-      this.selectedItem.icon=selectedImage;
+      this.selectedItem.activeIcon=selectedImage;
+
     }
 
 
