@@ -1,6 +1,5 @@
 import { Component, OnInit,Directive, Output, EventEmitter, Input, SimpleChange } from '@angular/core';
-import {FavoritesService} from './favorites.service';
-import { Http, Response } from '@angular/http';
+import {ItemService} from './item.service';
 import 'rxjs/Rx';
 
 declare var jquery:any;
@@ -8,14 +7,13 @@ declare var $ :any;
 
 
 @Component({
-  selector: 'app-favorites',
-  templateUrl: './favorites.component.html',
-  styleUrls: ['./favorites.component.css'],
-  providers: [FavoritesService]
+  selector: 'app-item',
+  templateUrl: './item.component.html',
+  styleUrls: ['./item.component.css'],
+  providers: [ItemService]
 })
-export class FavoritesComponent implements OnInit {
+export class ItemComponent implements OnInit {
 
-    url = "https://item.cfapps.io/cm/item";
     workletName:String="Item";
     viewType="grid";
     workletItemsFilterText;
@@ -36,16 +34,16 @@ export class FavoritesComponent implements OnInit {
 
 
 
-    constructor(private _favoritesService: FavoritesService, private http:Http) {}
+    constructor(private _itemService: ItemService) {}
     ngOnInit() {
-        this._favoritesService.getItems().subscribe((result) => {
+        this._itemService.getItems().subscribe((result) => {
             this.allFavorites = result._embedded.item;
             for (let item of this.allFavorites) {
                 item.subDescription= item.description.substring(0,255);
                 item.activeIcon= item.icon;
                 //get item icons
-                this.http.get(item._links.icons.href).subscribe((iconsResponse: Response)=>{
-                    item.itemIcons= iconsResponse.json()._embedded.icon;
+                this._itemService.getItemIcons(item._links.icons.href).subscribe((result) => {
+                    item.itemIcons= result._embedded.icon;
                 });
             }
             this.total = this.allFavorites.length;
@@ -73,6 +71,18 @@ export class FavoritesComponent implements OnInit {
     setItemsView(viewType){this.viewType=viewType;}
 
     openItemDescription(currentItem){
+
+        // this._itemService.getItem(currentItem._links.self).subscribe((result) => {
+        //     // this.currentItem = result;
+        //     console.log(result);
+        // });
+        //
+        // console.log(currentItem);
+        // $('body').css({overflow: 'hidden', height: '100%'});
+        // $('#openCircularModal').fadeIn();
+
+
+        console.log(currentItem);
         this.currentItem=currentItem;
         $('body').css({overflow: 'hidden', height: '100%'});
         $('#openCircularModal').fadeIn();

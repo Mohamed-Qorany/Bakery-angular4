@@ -19,7 +19,8 @@
            </ul>
          </div>
          <div class="col l4 m3 s12 flexCenterContainer">
-             <img class="responsive-img selectedImage animated zoomIn" id="activeImage" alt="" [src]="selectedItem.activeIcon" (load)="viewRenderedActiveImage()"/>
+             <img class="responsive-img selectedImage animated zoomIn" id="activeImage" alt=""
+                  *ngIf="selectedItem.activeIcon" [src]="selectedItem.activeIcon" (load)="viewRenderedActiveImage()"/>
              <app-circular-pre-loader id="activeImageLoader"></app-circular-pre-loader>
          </div>
          <div class="col l4 m4 s12 hide-on-small-only">
@@ -50,11 +51,12 @@
              </div>
            </div><br/>
            <div class="file-field left">
-               <div class="btn FlatBtn">
-                   <span>Upload Item Image</span><input type="file" multiple>
+               <div class="btn FlatBtn" style="background: transparent; box-shadow: none;">
+                   <img src="assets/resources/IMG/icons/upload-file.png"/>
+                   <input type="file" multiple>
                </div>
                <div class="file-path-wrapper">
-                   <input class="file-path validate" type="text"  placeholder="Upload one or more files">
+                   <input class="file-path validate hide-on-large-only hide-on-med-and-down" type="text">
                </div>
            </div>
          </div>
@@ -87,14 +89,18 @@
             <div *ngIf="actions">
                 <div>Actions <i class="material-icons right closeAccordionBtn" (click)="closeAccordion()">remove</i></div>
                 <div class="buttonsContainer">
-                  <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> Edit</a>
-                  <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> Close</a>
-                  <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> Delete</a>
+                  <a class="waves-effect waves-light btn">
+                      <i class="material-icons left">edit</i> Edit
+                  </a>
+                  <a class="waves-effect waves-light btn" (click)="closeCircularModal()">
+                      <i class="material-icons left">close</i> Close
+                  </a>
+                  <a class="waves-effect waves-light btn"><i class="material-icons left">remove</i> Delete</a>
                   <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> order</a>
-                  <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> stats & analytics</a>
+                  <a class="waves-effect waves-light btn"><i class="material-icons left">insert_chart</i> stats & analytics</a>
                   <p>
-                    <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
-                    <label for="filled-in-box">Deactivate</label>
+                    <input type="checkbox" class="filled-in" id="activeItem" [checked]="selectedItem.active !='true'" (change)="handleChange(selectedItem, $event)"/>
+                    <label for="activeItem">Active</label>
                   </p>
                 </div>
             </div>
@@ -102,8 +108,7 @@
             <div *ngIf="categories">
               <div>Categories <i class="material-icons right closeAccordionBtn" (click)="closeAccordion()">remove</i></div>
               <div class="buttonsContainer">
-                <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> Edit</a>
-                <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> Close</a>
+                <a class="waves-effect waves-light btn"><i class="material-icons left">dvr</i> Assign Categories</a>
               </div>
             </div>
 

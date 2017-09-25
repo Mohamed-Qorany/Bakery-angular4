@@ -8,7 +8,7 @@ import { DashBoardComponent } from './dash-board/dash-board.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
-import { FavoritesComponent } from './favorites/favorites.component';
+import { ItemComponent } from './item/item.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PaginationComponent } from './pagination/pagination.component';
 import { FilterPipe } from './filter.pipe';
@@ -18,7 +18,7 @@ import { CircularModalComponent } from './circular-modal/circular-modal.componen
 
 const appRoutes: Routes = [
   { path: '', component: DashBoardComponent },
-  { path: 'Favorites', component: FavoritesComponent }
+  { path: 'Item', component: ItemComponent }
 ];
 
 
@@ -29,7 +29,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     MainComponent,
     FooterComponent,
-    FavoritesComponent,
+    ItemComponent,
     PaginationComponent,
     FilterPipe,
     SortByPipe,

@@ -1,4 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
+import {ItemService} from '../item/item.service';
+
 declare var jquery:any;
 declare var $ :any;
 
@@ -21,7 +23,7 @@ export class CircularModalComponent implements OnInit {
     categories:boolean=false;
     openAccordions:boolean=true;
 
-    constructor() {}
+    constructor(private _itemService: ItemService) {}
     ngOnInit() {}
 
 
@@ -30,21 +32,15 @@ export class CircularModalComponent implements OnInit {
       $('body').css({overflow: 'auto', height: 'auto'});
     }
 
-    selectItemImage(selectedImage){
-      this.selectedItem.activeIcon=selectedImage;
-
-    }
-
+    selectItemImage(selectedImage){this.selectedItem.activeIcon=selectedImage;}
 
     viewRenderedItemImg(index){
       var itemImageLoaderID = "#ItemImageLoader"+index;
       var itemImageID = "#ItemImage"+index;
       $(itemImageLoaderID).fadeOut("fast", function () {$(itemImageID).fadeIn('slow');});
     }
-    viewRenderedActiveImage(){
-      $('#activeImageLoader').fadeOut("fast", function () {$('#activeImage').fadeIn('slow');});
-    }
 
+    viewRenderedActiveImage(){$('#activeImageLoader').fadeOut("fast", function () {$('#activeImage').fadeIn('slow');});}
 
     openAccordion(accordion){
       this.openAccordions=true;
@@ -86,8 +82,22 @@ export class CircularModalComponent implements OnInit {
       }
     }
 
+    closeAccordion(){this.openAccordions=false;}
 
-   closeAccordion(){
-     this.openAccordions=false;
-   }
+    // activeItem(id:number, status:boolean){
+    //     this._itemService.activateItem(id,status).subscribe(
+    //         (result) => console.log(result),
+    //         (err) => console.error(err),
+    //         () => console.log('Authentication Complete')
+    //     );
+    // }
+
+    handleChange(item, e) {
+        var isChecked = e.target.checked;
+        console.log(item._links.self.href);
+        console.log(isChecked);
+
+        this._itemService.activateItem(item._links.self.href,isChecked);
+    }
+
 }
