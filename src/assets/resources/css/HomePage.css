@@ -2,7 +2,7 @@
 body{ overflow-x: hidden; background: #EFF0F2;  }
 .haederFont{font-family: 'Quicksand', sans-serif; font-weight: 600;}
 .icon-Item img{  -webkit-transition: all .6s;  -moz-transition: all .6s;  -ms-transition: all .6s;  transition: all .6s;  }
-.FlatBtn{box-shadow: none; padding-left: 15px; padding-right: 15px;}
+.FlatBtn{box-shadow: none; padding-left: 15px; padding-right: 15px; }
 .flexCenterContainer {
     display: -webkit-flex;  display: flex;  -webkit-flex-direction: row;  flex-direction: row; -webkit-align-items: center;
     align-items: center; -webkit-justify-content: center; justify-content: center;
@@ -17,6 +17,10 @@ body{ overflow-x: hidden; background: #EFF0F2;  }
     -o-animation:      pulse .2s; /* Opera 12+ */
     animation:         pulse .2s; /* IE 10+, Fx 29+ */
 }
+.blueBtn{background: #0FB1E0; color: #fff; box-shadow: none;}
+.greenBtn{}
+.canselBtn{background: #F5F5F5;}
+
 
 
 
@@ -78,7 +82,8 @@ nav .nav-wrapper a{font-size: 18px;}
 .ListViewStyleContainer > a.notActiveViewBtn{background: #F5F5F5; color: #2BBBAD;}
 .workletOperations{border: 1.3px solid #EFF0F2; position: relative; height: auto; padding-top: 20px;  background: #ffffff;}
 .sortItemsBtn{
-    background: #0FB1E0; color: #fff; border: none; padding: 5px; position: relative;
+    background: #2CBBAD; color: #fff;
+    border: none; padding: 5px; position: relative;
     display: block;
     margin-top: 10px;
     width: 120px;

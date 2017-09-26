@@ -1,0 +1,23 @@
+.modal{min-width: 70%; min-height: 85vh;}
+.modal .modal-header{padding: 10px 20px 10px 20px; font-size: 16px;}
+.modal .modal-content{padding: 0px; background: #fff;}
+.modal .modal-content >div:nth-child(1){margin-top: 0px;}
+
+.modal .modal-content .modalInput{padding: 0; margin: 0;  margin-top: -10px;}
+.modal .modal-content .modalInput input{width: 95%;}
+.modal .modal-footer{background: #F5F5F5; z-index: 99999999;}
+
+
+
+
+.modal .tabs{background:transparent; border: 1px solid #EBEBEB; margin-top: -25px;}
+.modal .tabs .tab a:hover, .tabs .tab a.active{background: #F5F5F5;}
+.tabContent{
+    border: 1px solid #EBEBEB;
+    border-top: none;
+    padding: 0px 5px 5px 5px;
+}
+.modal #innerTabs{margin:0;}
+
+.modal .tabs .tab {min-width: 50%; border-radius: 10px;}
+fieldset{border: 1px solid #EBEBEB;}

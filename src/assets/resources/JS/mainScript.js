@@ -6,6 +6,12 @@ $(document).ready(function() {
     $('ul.tabs').tabs();
     $('.dropdown-button').dropdown();
     $('.collapsible').collapsible();
+    $('.tooltipped').tooltip();
+    $('.modal').modal({
+            dismissible: false,
+            complete: function() {$('.tooltipped').tooltip();}
+        });
+
 
     //close domainous List on Click Outside
     $(document).click(function(event) {

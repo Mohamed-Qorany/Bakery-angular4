@@ -1,0 +1,139 @@
+<div class="SelectedWorkletTitleContainer">
+  <div class="center-align left"><img src="assets/resources/IMG/icons/009-star.png" alt=""/></div>
+  <span class="left">{{workletName}}</span>
+</div>
+
+
+<div class="workletContainer">
+  <div class="workletContainerInner animated fadeIn" >
+    <div class="progress favLoader" id="favLoader" *ngIf="!favoritLoaded"><div class="indeterminate"></div></div>
+    <div class="workletContainerInnerContent" id="favContent">
+      <div class="myContainer ListLayOut" >
+        <div class="row workletOperations" onclick="$('.listViewDropDown').fadeOut('fast');">
+          <div class="col l5 m5 s12 flexCenterContainer">
+            <div class="" style="top: 8px; width: 250px;">
+              <label><b class="black-text">Sort By</b></label>
+              <select #selectedCategory name="jj" class="browser-default">
+                <option disabled selected>Choose your option</option>
+                <option *ngFor="let item of orderByFields" [value]="item.field" >{{item.field}}</option>
+              </select>
+              <button (click)="getValueFromSelect(selectedCategory.value)" class="FlatBtn sortItemsBtn">Sort Items</button>
+            </div>
+          </div>
+          <div class="col l2 m2 s12 flexCenterContainer" style="padding: 20px;">
+            <a class="btn-floating btn-large waves-effect waves-light blueBtn tooltipped"
+               (click)="openAddItemModal()" data-position="bottom" data-delay="50" data-tooltip="New Item">
+              <i class="material-icons">add</i>
+            </a>
+          </div>
+          <div class="col l5 m5 s12 ">
+            <div class="ListViewStyleContainer flexCenterContainer">
+              <label><b class="black-text">View</b></label>
+              <a class="waves-effect btn FlatBtn" [ngClass]="{'notActiveViewBtn': viewType != 'grid'}"
+                 (click)="setItemsView('grid')"><i class="material-icons left">view_module</i>Grid</a>
+              <a class="waves-effect btn FlatBtn" [ngClass]="{'notActiveViewBtn': viewType == 'grid'}"
+                 (click)="setItemsView('list')"><i class="material-icons left">list</i>List</a>
+            </div>
+            <div class="flexCenterContainer">
+              <div class="filterTableContainer right">
+                <form>
+                  <div class="input-field">
+                    <i class="material-icons prefix">local_bar</i>
+                    <input placeholder="Enter Filter" type="text" [(ngModel)]="workletItemsFilterText" name="workletItemsFilterText">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div><!--End WorkletItems Operations-->
+
+
+
+        <div class="row" style="padding: 0;">
+          <div id="All" class="col s12 tabContainer">
+            <!--/****************** Grid view ********************/-->
+            <div class="row" *ngIf="viewType == 'grid'">
+              <div class="col l4 m6 s12" *ngFor="let item of favorites | filter : workletItemsFilterText | sortBy: orderByValue; let i=index">
+                <div class="card hoverable center-align gridCard" onmouseover="showDominos(this.id,'grid')" onmouseleave="hideDominos(this.id,'grid')" id="{{i}}">
+                  <div class="card-image flexCenterContainer" (click)="openItemDescription(item)" data-modal="test" data-action="open">
+                    <img src="{{item.icon}}" class="responsive-img" (load)="viewitemImg(i)" id="gridImg{{i}}">
+                    <app-circular-pre-loader id="gridImgLoader{{i}}"></app-circular-pre-loader>
+                  </div>
+                  <div class="card-content" (click)="openItemDescription(item)" data-modal="test" data-action="open">
+                    <span class="card-title ">{{item.name}}</span>
+                    <p>{{item.subDescription}}</p>
+                  </div>
+                  <span class="card-title activator dominosBtn center-align" id="cardDominos{{i}}"><i class="material-icons">more_horiz</i></span>
+                  <div class="card-action right-align" id="cardAction{{i}}" (click)="openItemDescription(item)" data-modal="test" data-action="open">${{item.price}}</div>
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4 revealCloseBtn"><i class="material-icons right">close</i></span>
+                    <div class="collection CardCollection">
+                      <a href="#!" class="collection-item">One</a>
+                      <a href="#!" class="collection-item">Two</a>
+                      <a href="#!" class="collection-item">Three</a>
+                      <a href="#!" class="collection-item">Four</a>
+                    </div>
+                  </div>
+                </div><!--end grid card-->
+              </div>
+            </div>
+
+            <!--/****************** list view ********************/-->
+            <div class="row" *ngIf="viewType == 'list'">
+              <div *ngFor="let item of favorites; let i=index" style="height: auto; position: relative;">
+                <div class="card horizontal workletListItem" onmouseover="showDominos(this.id,'list')" onmouseleave="hideDominos(this.id,'grid')" id="l{{i}}">
+                  <div class="card-image flexCenterContainer" (click)="openItemDescription(item)" data-modal="test" data-action="open" style="width: 200px; height: 150px;">
+                    <img src="{{item.icon}}" class="responsive-img" (load)="viewitemImg(i)" id="listImg{{i}}">
+                    <app-circular-pre-loader id="listImgLoader{{i}}"></app-circular-pre-loader>
+                  </div>
+                  <div class="card-stacked">
+                    <div class="card-content" >
+                      <span class="card-title grey-text text-darken-4" (click)="openItemDescription(item)" data-modal="test" data-action="open">{{item.name}}</span>
+                      <p (click)="openItemDescription(item)" data-modal="test" data-action="open">{{item.subDescription}}</p>
+                      <span class="card-title activator dominosBtn center-align" id="listDominos{{i}}"
+                            onclick="openListDropDown(this.id)" >
+                                                  <i class="material-icons">more_horiz</i>
+                                              </span>
+                      <p (click)="openItemDescription(item)" data-modal="test" data-action="open" style="position: absolute; bottom: 10px; right: 15px;">
+                        <span class="right"> ${{item.price}}</span>
+                      </p>
+                    </div>
+                  </div>
+                </div><!--end list card-->
+                <div class="listViewDropDown" id="listViewDropDown{{i}}">
+                  <div class="collection CardCollection">
+                    <a href="#!" class="collection-item">One</a>
+                    <a href="#!" class="collection-item">Two</a>
+                    <a href="#!" class="collection-item">Three</a>
+                  </div>
+                </div><!--end domainos list-->
+              </div>
+            </div>
+          </div>
+        </div><!--end row container-->
+
+        <!--/****************** pagination ********************/-->
+        <app-pagination
+                (goPage)="goToPage($event)"
+                (goNext)="onNext()"
+                (goPrev)="onPrev()"
+                [pagesToShow]="3"
+                [page]="page"
+                [perPage]="limit"
+                [count]="total">
+        </app-pagination>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-circular-modal [selectedItem]="currentItem" [itemModalTitle]="itemModalTitle" [itemModalTitleIcon]="itemModalTitleIcon"></app-circular-modal>
+<app-item-form-component
+        [itemModalTitle]="itemModalTitle"
+        [itemModalTitleIcon]="itemModalTitleIcon"
+        [selectedItem]="currentItem"></app-item-form-component>
+
+
+
+

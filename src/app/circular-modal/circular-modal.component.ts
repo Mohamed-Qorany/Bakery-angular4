@@ -1,8 +1,9 @@
-import { Component, OnInit,Input } from '@angular/core';
-import {ItemService} from '../item/item.service';
+import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
+import {ItemsServiceService} from '../items-component/items-service.service';
 
 declare var jquery:any;
 declare var $ :any;
+import * as swal from 'sweetalert';
 
 
 
@@ -23,7 +24,21 @@ export class CircularModalComponent implements OnInit {
     categories:boolean=false;
     openAccordions:boolean=true;
 
-    constructor(private _itemService: ItemService) {}
+
+
+
+
+    //Item Modal
+    @Input()
+    itemModalTitle:String=" ";
+
+    @Input()
+    itemModalTitleIcon:String=" ";
+
+
+
+
+    constructor(private _itemService: ItemsServiceService) {}
     ngOnInit() {}
 
 
@@ -92,12 +107,31 @@ export class CircularModalComponent implements OnInit {
     //     );
     // }
 
-    handleChange(item, e) {
+    activeItem(item, e) {
         var isChecked = e.target.checked;
         console.log(item._links.self.href);
         console.log(isChecked);
+        swal({
+            title: "Are you sure?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willActive) => {
+            if (willActive) {
+                swal("success!",{icon: "success",});
+            }else {
+
+            }
+        });
+
 
         this._itemService.activateItem(item._links.self.href,isChecked);
+    }
+
+    openEditItemModal(){
+        this.closeCircularModal();
+        console.log("edit")
+        $('.modal.ItemModal').modal('open');
     }
 
 }

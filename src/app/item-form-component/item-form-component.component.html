@@ -1,0 +1,100 @@
+<div class="modal modal-fixed-footer ItemModal" style="top:-10%;">
+    <div class="modal-header" style="background: #F5F5F5"><i class="material-icons left">{{itemModalTitleIcon}}</i>{{itemModalTitle}}</div>
+    <div class="modal-content">
+        <div class="progress favLoader" id="favLoader" *ngIf="!submitSuccess"><div class="indeterminate"></div></div>
+
+
+
+
+
+        <div class="row" *ngIf="submitSuccess" style="padding: 20px 10px 10px 10px;">
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col l5 m6 s12 modalInput"><input placeholder="Name" type="text" [(ngModel)] = "selectedItem.name"></div>
+                    <div class="input-field col l5 m6 s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.icon" placeholder="Icon"></div>
+                    <div class="col l2 m6 s12">
+                        <p><input type="checkbox" id="Active" [checked]="selectedItem.active" (change)="selectedItem.active=$event.target.checked;" /><label for="Active">Active</label></p>
+                    </div>
+                    <div class="input-field  col l12 m6 s12 modalInput">
+                        <textarea class="materialize-textarea" [(ngModel)] = "selectedItem.description" placeholder="Description"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s3"><a class="active" href="#ProductTab">Product</a></li>
+                    <li class="tab col s3"><a href="#ValueTab">Value</a></li>
+                </ul>
+                <div id="ProductTab" class="col s12 tabContent" style="padding-bottom: 20px; padding-top: 15px;">
+                    <div class="col l5 m5 s12">
+                        <div class="input-field col s12"><input type="text" [(ngModel)] = "selectedItem.product.upc" placeholder="UPC"></div>
+                        <fieldset>
+                            <legend>Characteristic</legend>
+                            <p><input type="checkbox" [checked]="selectedItem.product.characteristic.lequid" (change)="selectedItem.product.characteristic.lequid=$event.target.checked;" id="Lequid" /><label for="Lequid">Lequid</label></p>
+                            <p><input type="checkbox" [checked]="selectedItem.product.characteristic.fraguile" (change)="selectedItem.product.characteristic.fraguile=$event.target.checked;" id="Fraguile" /><label for="Fraguile">Fraguile</label></p>
+                        </fieldset>
+                    </div>
+                    <div class="col l7 m7 s12" style="padding-top: 10px; padding-bottom: 10px;">
+                        <ul class="tabs" id="innerTabs">
+                            <li class="tab col s3"><a class="active" href="#Dimesion">Dimesion</a></li>
+                            <li class="tab col s3"><a href="#Brand">Brand</a></li>
+                        </ul>
+                        <div id="Dimesion" class="col s12 tabContent"><br/>
+                            <div class="input-field col l6 m6 s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.product.dimesion.depth" placeholder="Depth"></div>
+                            <div class="input-field col l6 m6 s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.product.dimesion.breadth" placeholder="Breadth"></div>
+                            <div class="input-field col l6 m6 s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.product.dimesion.width" placeholder="Width"></div>
+                            <div class="input-field col l6 m6 s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.product.dimesion.length" placeholder="Length"></div>
+                            <div class="input-field col l6 m6 s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.product.dimesion.weight" placeholder="Weight"></div>
+                            <div class="input-field col l6 m6 s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.product.dimesion.height" placeholder="Height"></div>
+                        </div>
+                        <div id="Brand" class="col s12 tabContent"><br/>
+                            <div class="input-field col l6 m6 s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.product.brand.brandName" placeholder="Brand name"></div>
+                            <div class="input-field col l6 m6 s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.product.brand.brandRate" placeholder="Brand rate"></div>
+                            <div class="input-field col l6 m6 s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.product.brand.brandLogo" placeholder="Brand logo"></div>
+                        </div>
+                    </div>
+                    <br/>
+                </div>
+                <!--End Product-->
+                <div id="ValueTab" class="col s12 tabContent">
+                    <div class="col l6 m6 s12"><br/>
+                        <div class="input-field col s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.value.price" placeholder="Price"></div>
+                        <div class="input-field col s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.value.unit" placeholder="Unit"></div>
+                        <div class="input-field col s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.value.quantity" placeholder="Quantity"></div>
+                        <div class="input-field col s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.value.cost" placeholder="Cost"></div>
+                        <div class="input-field col s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.value.reorderThreshold" placeholder="Reorder threshold"></div>
+                        <div class="input-field col s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.value.restockLevel" placeholder="Restock level"></div>
+                        <div class="input-field col s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.value.discount" placeholder="Discount"></div>
+                        <div class="input-field col s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.value.deliveryPrice" placeholder="Delivery price"></div>
+                        <div class="input-field col s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.value.deliveryCost" placeholder="Delivery cost"></div>
+                        <div class="col s12 modalInput">
+                            <p><input type="checkbox" [checked]="selectedItem.value.taxExempted" (change)="selectedItem.value.taxExempted=$event.target.checked;" id="Tax"/><label for="Tax">Tax exempted</label></p><br/>
+                        </div>
+                    </div>
+                    <div class="col l6 m6 s12"><br/>
+                        <fieldset>
+                            <legend>Exception</legend>
+                            <a class="waves-effect waves-light btn">Add Item</a>
+                        </fieldset><br/>
+                        <fieldset>
+                            <legend>Tax level</legend>
+                            <div class="input-field col s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.value.taxLevel.taxUnit" placeholder="Tax unit"></div>
+                            <div class="input-field col s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.value.taxLevel.costTax" placeholder="Cost tax"></div>
+                            <div class="input-field col s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.value.taxLevel.priceTax" placeholder="Price tax"></div><br/>
+                            <fieldset>
+                                <legend>Tax group</legend>
+                                <a class="waves-effect waves-light btn">Add Item</a>
+                            </fieldset>
+                        </fieldset>
+                        <br/>
+                    </div>
+                    <br/>
+                </div><!--End Value-->
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-action modal-close waves-effect waves-green btn-flat blueBtn" (click)="submitItem()">Submit</button>
+        <a class="modal-action modal-close waves-effect waves-green btn-flat canselBtn" (click)="cancelItemAddModal()">cancel</a>
+    </div>
+</div>

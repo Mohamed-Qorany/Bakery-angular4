@@ -36,7 +36,7 @@
 
 
      <div class="row ItemDataContainer">
-       <p class="ItemDataPrice center-align">${{selectedItem.price}}</p>
+       <p class="ItemDataPrice center-align" *ngIf="selectedItem.value">${{selectedItem.value.price}}</p>
        <p class="ItemDataName center-align">{{selectedItem.name}}</p>
          <div class="col s12">
            <div *ngFor="let itemImage of selectedItem.itemIcons; let i=index">
@@ -89,7 +89,7 @@
             <div *ngIf="actions">
                 <div>Actions <i class="material-icons right closeAccordionBtn" (click)="closeAccordion()">remove</i></div>
                 <div class="buttonsContainer">
-                  <a class="waves-effect waves-light btn">
+                  <a class="waves-effect waves-light btn" (click)="openEditItemModal()">
                       <i class="material-icons left">edit</i> Edit
                   </a>
                   <a class="waves-effect waves-light btn" (click)="closeCircularModal()">
@@ -99,7 +99,8 @@
                   <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> order</a>
                   <a class="waves-effect waves-light btn"><i class="material-icons left">insert_chart</i> stats & analytics</a>
                   <p>
-                    <input type="checkbox" class="filled-in" id="activeItem" [checked]="selectedItem.active !='true'" (change)="handleChange(selectedItem, $event)"/>
+                    <input type="checkbox" class="filled-in" id="activeItem"
+                           [checked]="selectedItem.active" (change)="activeItem(selectedItem, $event)"/>
                     <label for="activeItem">Active</label>
                   </p>
                 </div>
@@ -130,7 +131,6 @@
               </div>
             </div>
 
-
             <div *ngIf="values">
               <div>Values<i class="material-icons right closeAccordionBtn" (click)="closeAccordion()">remove</i></div>
               <div class="buttonsContainer">
@@ -138,15 +138,13 @@
                 <p>
                   <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
                   <label for="filled-in-box">Deactivate</label>
-                </p>              </div>
+                </p>
+              </div>
             </div>
-
-
-
         </div>
       </div>
     </div>
-
-
     </div>
 </div>
+
+
