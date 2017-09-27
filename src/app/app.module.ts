@@ -16,6 +16,7 @@ import { CircularPreLoaderComponent } from './circular-pre-loader/circular-pre-l
 import { CircularModalComponent } from './circular-modal/circular-modal.component';
 import { ItemFormComponentComponent } from './item-form-component/item-form-component.component';
 import { ItemsComponentComponent } from './items-component/items-component.component';
+import { ItemCategoriesModalComponent } from './item-categories-modal/item-categories-modal.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashBoardComponent },
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
     CircularPreLoaderComponent,
     CircularModalComponent,
     ItemFormComponentComponent,
-    ItemsComponentComponent
+    ItemsComponentComponent,
+    ItemCategoriesModalComponent
   ],
   imports: [
     BrowserModule, HttpModule, FormsModule,RouterModule.forRoot(appRoutes)

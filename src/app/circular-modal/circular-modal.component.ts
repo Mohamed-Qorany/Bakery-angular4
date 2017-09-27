@@ -26,8 +26,6 @@ export class CircularModalComponent implements OnInit {
 
 
 
-
-
     //Item Modal
     @Input()
     itemModalTitle:String=" ";
@@ -99,18 +97,10 @@ export class CircularModalComponent implements OnInit {
 
     closeAccordion(){this.openAccordions=false;}
 
-    // activeItem(id:number, status:boolean){
-    //     this._itemService.activateItem(id,status).subscribe(
-    //         (result) => console.log(result),
-    //         (err) => console.error(err),
-    //         () => console.log('Authentication Complete')
-    //     );
-    // }
-
     activeItem(item, e) {
-        var isChecked = e.target.checked;
-        console.log(item._links.self.href);
-        console.log(isChecked);
+        // var isChecked = e.target.checked;
+        // console.log(item._links.self.href);
+        // console.log(isChecked);
         swal({
             title: "Are you sure?",
             icon: "warning",
@@ -119,13 +109,9 @@ export class CircularModalComponent implements OnInit {
         }).then((willActive) => {
             if (willActive) {
                 swal("success!",{icon: "success",});
-            }else {
-
-            }
+                // this._itemService.activateItem(item._links.self.href,isChecked);
+            }else {}
         });
-
-
-        this._itemService.activateItem(item._links.self.href,isChecked);
     }
 
     openEditItemModal(){
@@ -134,4 +120,23 @@ export class CircularModalComponent implements OnInit {
         $('.modal.ItemModal').modal('open');
     }
 
+    deleteItem(item, e) {
+        swal({
+            title: "Are you sure?",
+            text: "are you sure that you want to delete this Item!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willActive) => {
+            if (willActive) {
+                // delete request
+                swal("success!",{icon: "success",});
+            }else {}
+        });
+    }
+
+    openCategoriesModal(){
+        console.log("edit")
+        $('.modal.CategoriesModal').modal('open');
+    }
 }

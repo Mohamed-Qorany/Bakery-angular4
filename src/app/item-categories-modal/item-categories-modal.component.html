@@ -1,0 +1,38 @@
+<div class="modal modal-fixed-footer CategoriesModal" style="top:-10%;">
+  <div class="modal-header" style="background: #F5F5F5"><i class="material-icons left">dvr</i> Categories</div>
+  <div class="modal-content">
+    <div class="progress favLoader" id="favLoader" *ngIf="!CategoriesReady"><div class="indeterminate"></div></div>
+    <div class="row"  style="padding: 20px 10px 10px 10px;"  *ngIf="CategoriesReady">
+
+      <div class="col l6 m6 s12">
+        <button class="btn waves-effect waves-green btn-flat blueBtn">Assign</button>
+        <button class="btn waves-effect waves-green">New</button>
+      </div>
+      <div class="col l6 m6 s12">
+        <div class="input-field">
+          <i class="material-icons prefix">local_bar</i>
+          <input placeholder="Search.." type="text" [(ngModel)]="categoriesFilterText">
+        </div>
+      </div>
+
+      <table class="bordered striped highlight centered">
+        <thead><tr><th></th><th>Name</th><th>Description</th></tr></thead>
+        <tbody>
+        <tr *ngFor="let category of Categories; let i=index">
+          <td>
+              <p style="padding: 0; margin: 0;">
+                <input type="checkbox" id="category{{i}}"/>
+                <label for="category{{i}}">select</label>
+              </p>
+          </td>
+          <td>{{category.name}}</td>
+          <td>{{category.nominalCode}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat canselBtn" (click)="cancelItemAddModal()">cancel</a>
+  </div>
+</div>

@@ -78,9 +78,9 @@
                         </fieldset><br/>
                         <fieldset>
                             <legend>Tax level</legend>
-                            <div class="input-field col s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.value.taxLevel.taxUnit" placeholder="Tax unit"></div>
-                            <div class="input-field col s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.value.taxLevel.costTax" placeholder="Cost tax"></div>
-                            <div class="input-field col s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.value.taxLevel.priceTax" placeholder="Price tax"></div><br/>
+                            <div class="input-field col s12 modalInput"><input type="text" *ngIf="selectedItem.value.taxLevel" [(ngModel)] = "selectedItem.value.taxLevel.taxUnit" placeholder="Tax unit"></div>
+                            <div class="input-field col s12 modalInput"><input type="text" *ngIf="selectedItem.value.taxLevel" [(ngModel)] = "selectedItem.value.taxLevel.costTax" placeholder="Cost tax"></div>
+                            <div class="input-field col s12 modalInput"><input type="text" *ngIf="selectedItem.value.taxLevel" [(ngModel)] = "selectedItem.value.taxLevel.priceTax" placeholder="Price tax"></div><br/>
                             <fieldset>
                                 <legend>Tax group</legend>
                                 <a class="waves-effect waves-light btn">Add Item</a>

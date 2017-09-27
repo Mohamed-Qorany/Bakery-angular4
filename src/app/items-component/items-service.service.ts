@@ -14,7 +14,7 @@ export class ItemsServiceService {
   getItems(){return this.http.get(AppSettings.API_ENDPOINT+'item').map(response => response.json());}
   getItem(itemPath){return this.http.get(itemPath).map(response => response.json());}
   getItemIcons(IconsPath){return this.http.get(IconsPath).map(response => response.json());}
-  getCategories(IconsPath){return this.http.get(AppSettings.API_ENDPOINT+'category').map(response => response.json());}
+  getCategories(){return this.http.get(AppSettings.API_ENDPOINT+'category').map(response => response.json());}
 
 
 

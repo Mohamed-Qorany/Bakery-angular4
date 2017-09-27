@@ -95,7 +95,7 @@
                   <a class="waves-effect waves-light btn" (click)="closeCircularModal()">
                       <i class="material-icons left">close</i> Close
                   </a>
-                  <a class="waves-effect waves-light btn"><i class="material-icons left">remove</i> Delete</a>
+                  <a class="waves-effect waves-light btn" (click)="deleteItem()"><i class="material-icons left">remove</i> Delete</a>
                   <a class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i> order</a>
                   <a class="waves-effect waves-light btn"><i class="material-icons left">insert_chart</i> stats & analytics</a>
                   <p>
@@ -109,7 +109,7 @@
             <div *ngIf="categories">
               <div>Categories <i class="material-icons right closeAccordionBtn" (click)="closeAccordion()">remove</i></div>
               <div class="buttonsContainer">
-                <a class="waves-effect waves-light btn"><i class="material-icons left">dvr</i> Assign Categories</a>
+                <a class="waves-effect waves-light btn" (click)="openCategoriesModal()"><i class="material-icons left">dvr</i> Assign Categories</a>
               </div>
             </div>
 
@@ -147,4 +147,4 @@
     </div>
 </div>
 
-
+<app-item-categories-modal></app-item-categories-modal>
