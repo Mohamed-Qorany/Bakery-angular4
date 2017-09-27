@@ -1,17 +1,16 @@
 <div class="modal modal-fixed-footer CategoriesModal" style="top:-10%;">
   <div class="modal-header" style="background: #F5F5F5"><i class="material-icons left">dvr</i> Categories</div>
   <div class="modal-content">
-    <div class="progress favLoader"  *ngIf="!CategoriesReady"><div class="indeterminate"></div></div>
-    <div class="row"  style="padding: 20px 10px 10px 10px;"  *ngIf="CategoriesReady">
+    <div class="progress favLoader"  *ngIf="CategoriesSubmit"><div class="indeterminate"></div></div>
+    <div class="row"  style="padding: 20px 10px 10px 10px;">
 
       <div class="col l5 m5 s12">
-        <button class="btn waves-effect waves-green btn-flat blueBtn">Assign</button>
+        <button class="btn waves-effect waves-green btn-flat blueBtn" (click)="assignCategories()" [disabled]="CategoriesSubmit">Assign</button>
         <button class="btn waves-effect waves-green" (click)="openAddCategory()">New</button>
       </div>
 
       <div class="addCategoryContainer animated fadeInDown">
         <div class="progress favLoader" *ngIf="addCategoriesReady"><div class="indeterminate"></div></div>
-
         <i class="material-icons right" (click)="closeAddCategory()">close</i><br/>
         <fieldset>
           <legend>Add Category</legend>
@@ -27,7 +26,7 @@
 
 
 
-      <table id="categoriesTable" datatable [dtOptions]="{pagingType: 'full_numbers',displayLength: 4}"
+      <table id="categoriesTable" datatable [dtOptions]="{pagingType: 'full_numbers',displayLength: 6}"
              [dtTrigger]="dtTrigger" class="bordered striped centered">
         <thead><tr><th></th><th>Name</th><th>Description</th></tr></thead>
         <tbody>

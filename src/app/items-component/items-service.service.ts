@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers} from '@angular/http';
+import { Http, Response} from '@angular/http';
 import {AppSettings} from '../app-settings';
 
 @Injectable()
 export class ItemsServiceService {
-  headers: Headers;
 
-
-  constructor(private http:Http) {
-    this.headers = new Headers({ 'Content-Type': 'text/plain'});
-  }
+  constructor(private http:Http) {}
 
   getItems(){return this.http.get(AppSettings.API_ENDPOINT+'item').map(response => response.json());}
   getItem(itemPath){return this.http.get(itemPath).map(response => response.json());}
@@ -20,10 +16,7 @@ export class ItemsServiceService {
 
   getCategories(){return this.http.get(AppSettings.API_ENDPOINT+'category').map(response => response.json());}
   addCategory(category){return this.http.post(AppSettings.API_ENDPOINT+'category', category).map(response => response.json());}
-
-
-
-
+  assignCategories(itemPath, categories){return this.http.put(itemPath+'/category', categories).map(response => response.json());}
 
 
   deleteItem(itemPath){return this.http.put(itemPath, {}).map(response => response.json());}

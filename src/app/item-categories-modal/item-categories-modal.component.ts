@@ -15,9 +15,15 @@ import * as swal from 'sweetalert';
 export class ItemCategoriesModalComponent implements OnInit {
     Categories:any[];
     categoryObject:any={"name": "", "nominalCode": "", "categoryIcon": ""};
-    CategoriesReady:boolean=true;
+    categoriesListObjects:any[]=[];
+
+    CategoriesSubmit:boolean=false;
     addCategoriesReady:boolean=false;
     @Input() selectedItem: any={};
+
+
+
+
      // We use this trigger because fetching the list of persons can be quite long,
     dtTrigger: Subject<any> = new Subject();
 
@@ -96,5 +102,22 @@ export class ItemCategoriesModalComponent implements OnInit {
             }else {}
           });
       });
+    }
+
+
+    assignCategories(){
+        this.categoriesListObjects=[1,2];
+        this.CategoriesSubmit=true;
+        // for (let c of this.Categories) {
+        //     if (c.selected) {this.categoriesListObjects.push(c);}
+        // }
+        this._itemService.assignCategories(this.selectedItem._links.self.href, this.categoriesListObjects).subscribe((result) => {
+            // console.log(result);
+            this.CategoriesSubmit=false;
+            swal({title: "Good job!", text: "Assign Categories!", icon: "success",
+            }).then((willDelete) => {
+                if (willDelete) {this.categoriesListObjects=[];}else {}
+            });
+        });
     }
 }

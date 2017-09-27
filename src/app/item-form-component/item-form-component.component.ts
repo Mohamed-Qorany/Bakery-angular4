@@ -82,8 +82,6 @@ export class ItemFormComponentComponent implements OnInit {
     });
   }
 
-
-
   editItem(){
     this.formSubmit=true;
     this._itemService.editItem(this.selectedItem._links.self.href, this.selectedItem).subscribe((result) => {
@@ -101,10 +99,6 @@ export class ItemFormComponentComponent implements OnInit {
   }
 
   submitItem(){
-    if(this.itemModalTitleIcon=="add"){
-      this.addItem();
-    }else{
-      this.editItem();
-    }
+    if(this.itemModalTitleIcon=="add"){this.addItem();}else{this.editItem();}
   }
 }
