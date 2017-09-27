@@ -3,7 +3,7 @@ body{ overflow-x: hidden; background: #EFF0F2;  }
 .haederFont{font-family: 'Quicksand', sans-serif; font-weight: 600;}
 .icon-Item img{  -webkit-transition: all .6s;  -moz-transition: all .6s;  -ms-transition: all .6s;  transition: all .6s;  }
 .FlatBtn{box-shadow: none; padding-left: 15px; padding-right: 15px; }
-.flexCenterContainer {
+.flexCenterContainer,.dataTables_wrapper .dataTables_filter {
     display: -webkit-flex;  display: flex;  -webkit-flex-direction: row;  flex-direction: row; -webkit-align-items: center;
     align-items: center; -webkit-justify-content: center; justify-content: center;
 }
@@ -24,9 +24,9 @@ body{ overflow-x: hidden; background: #EFF0F2;  }
 
 
 
-
-
-
+.dataTables_wrapper .dataTables_length{display: none;}
+.dataTables_wrapper .dataTables_filter input{width: 100px;}
+.dataTables_wrapper .dataTables_paginate .paginate_button{background: #E8E8E8; border: none; color: blue;}
 
 
 /*************************************** Home page style ************************/

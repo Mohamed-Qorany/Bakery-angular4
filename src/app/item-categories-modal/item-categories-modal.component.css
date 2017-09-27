@@ -7,4 +7,5 @@
 .modal .modal-footer{background: #F5F5F5; z-index: 99999999;}
 
 
-
+.dataTables_wrapper .dataTables_filter{border: 1px solid;}
+.dataTables_wrapper .dataTables_filter input{background: #222;}

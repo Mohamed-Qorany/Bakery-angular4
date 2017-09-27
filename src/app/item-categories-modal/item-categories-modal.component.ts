@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ItemsServiceService} from '../items-component/items-service.service';
+import { Subject } from 'rxjs/Rx';
 
 
 declare var jquery:any;
@@ -15,13 +16,17 @@ export class ItemCategoriesModalComponent implements OnInit {
 
   CategoriesReady:boolean=true;
   Categories:any[];
-  categoriesFilterText:String="";
   selectedCategories:any[];
+
+  dtOptions: DataTables.Settings = {};
+  // We use this trigger because fetching the list of persons can be quite long,
+  dtTrigger: Subject<any> = new Subject();
 
   constructor(private _itemService: ItemsServiceService) { }
   ngOnInit() {
     this._itemService.getCategories().subscribe((result) => {
       this.Categories = result._embedded.category;
+      this.dtTrigger.next();
     });
   }
 

@@ -4,18 +4,13 @@
     <div class="progress favLoader" id="favLoader" *ngIf="!CategoriesReady"><div class="indeterminate"></div></div>
     <div class="row"  style="padding: 20px 10px 10px 10px;"  *ngIf="CategoriesReady">
 
-      <div class="col l6 m6 s12">
+      <div class="col s12">
         <button class="btn waves-effect waves-green btn-flat blueBtn">Assign</button>
         <button class="btn waves-effect waves-green">New</button>
       </div>
-      <div class="col l6 m6 s12">
-        <div class="input-field">
-          <i class="material-icons prefix">local_bar</i>
-          <input placeholder="Search.." type="text" [(ngModel)]="categoriesFilterText">
-        </div>
-      </div>
 
-      <table class="bordered striped highlight centered">
+      <table id="categoriesTable" datatable [dtOptions]="{pagingType: 'full_numbers',displayLength: 4}"
+             [dtTrigger]="dtTrigger" class="bordered striped centered">
         <thead><tr><th></th><th>Name</th><th>Description</th></tr></thead>
         <tbody>
         <tr *ngFor="let category of Categories; let i=index">
