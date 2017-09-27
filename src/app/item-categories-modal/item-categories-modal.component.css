@@ -1,5 +1,8 @@
+/*.modal.CategoriesModal{min-height: 80vh;}*/
+
+
 .modal .modal-header{padding: 10px 20px 10px 20px; font-size: 16px;}
-.modal .modal-content{padding: 0px; background: #fff;}
+.modal .modal-content{padding: 0px; background: #fff; padding-bottom: 40px;}
 .modal .modal-content >div:nth-child(1){margin-top: 0px;}
 
 .modal .modal-content .modalInput{padding: 0; margin: 0;  margin-top: -10px;}
@@ -9,3 +12,17 @@
 
 .dataTables_wrapper .dataTables_filter{border: 1px solid;}
 .dataTables_wrapper .dataTables_filter input{background: #222;}
+
+
+.addCategoryContainer{
+    position: absolute; width: 100%; height: 100%;display: none;
+    top:0; background: #fff; z-index: 9999; padding: 20px 40px 20px 40px; right: 0px;}
+
+.addCategoryContainer i{
+cursor: pointer; font-size: 30px; font-weight: 600;
+}
+
+fieldset{
+    margin-top: 20px;
+    padding-top: 10px; padding-left: 20px; border: 1px solid #EBEBEB;
+}

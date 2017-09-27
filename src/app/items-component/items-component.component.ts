@@ -39,7 +39,9 @@ export class ItemsComponentComponent implements OnInit {
       "discount": 0,
       "exception": [],
       "restockLevel": 0, "reorderThreshold": 0
-    }
+    },
+    "Categories":[]
+
   };
 
 
@@ -101,7 +103,25 @@ export class ItemsComponentComponent implements OnInit {
 
   openItemDescription(currentItem){
     this._itemService.getItem(currentItem._links.self.href).subscribe((result) => {
+
       this.currentItem = result;
+      this.currentItem.Categories=[{
+        "name" : "Drink",
+        "nominalCode" : "C00L123",
+        "categoryIcon" : null,
+        "_links" : {
+          "self" : {
+            "href" : "https://item.cfapps.io/cm/category/1"
+          },
+          "category" : {
+            "href" : "https://item.cfapps.io/cm/category/1"
+          },
+          "parentCategory" : {
+            "href" : "https://item.cfapps.io/cm/category/1/parentCategory"
+          }
+        }
+      }];
+
       this.currentItem.activeIcon= result.icon;
       this.currentItem.itemIcons=currentItem.itemIcons;
     });

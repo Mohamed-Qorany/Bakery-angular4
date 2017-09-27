@@ -136,7 +136,9 @@ export class CircularModalComponent implements OnInit {
     }
 
     openCategoriesModal(){
-        console.log("edit")
+        // console.log("edit")
         $('.modal.CategoriesModal').modal('open');
     }
+
+
 }

@@ -25,8 +25,13 @@ body{ overflow-x: hidden; background: #EFF0F2;  }
 
 
 .dataTables_wrapper .dataTables_length{display: none;}
+.dataTables_wrapper .dataTables_filter{margin-bottom: -20px; color: #222; font-weight: 600;}
 .dataTables_wrapper .dataTables_filter input{width: 100px;}
+
 .dataTables_wrapper .dataTables_paginate .paginate_button{background: #E8E8E8; border: none; color: blue;}
+.dataTables_wrapper .dataTables_paginate .paginate_button:active{background: red; border: none; color: #fff;}
+
+
 
 
 /*************************************** Home page style ************************/
