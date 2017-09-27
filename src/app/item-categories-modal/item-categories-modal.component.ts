@@ -15,9 +15,8 @@ import * as swal from 'sweetalert';
 export class ItemCategoriesModalComponent implements OnInit {
     Categories:any[];
     categoryObject:any={"name": "", "nominalCode": "", "categoryIcon": ""};
-
-  CategoriesReady:boolean=true;
-
+    CategoriesReady:boolean=true;
+    addCategoriesReady:boolean=false;
     @Input() selectedItem: any={};
      // We use this trigger because fetching the list of persons can be quite long,
     dtTrigger: Subject<any> = new Subject();
@@ -35,14 +34,15 @@ export class ItemCategoriesModalComponent implements OnInit {
     }
 
     ngOnChanges() {
-      if(this.Categories){
-        for (let c of this.Categories) {
-          if (this.selectedItem.Categories) {
-            for (let itemC of this.selectedItem.Categories) {
-              if (itemC.name == c.name) {c.selected = true; break;}
+      if(this.Categories && this.selectedItem){
+        this._itemService.getItemCategories(this.selectedItem._links.categories.href).subscribe((result) => {
+            this.selectedItem.Categories=result._embedded.category;
+            for (let c of this.Categories) {
+              for (let itemC of this.selectedItem.Categories) {
+                if (itemC.name == c.name) {c.selected = true; break;}
+              }
             }
-          }
-        }
+        });
       }
     }
 
@@ -79,10 +79,12 @@ export class ItemCategoriesModalComponent implements OnInit {
     }
 
     addCategory(){
+      this.addCategoriesReady=true;
       this._itemService.addCategory(this.categoryObject).subscribe((result) => {
-          console.log(result);
+          // console.log(result);
           this.Categories.unshift(this.categoryObject);
           this.categoryObject={"name": "", "nominalCode": "", "categoryIcon": ""};
+          this.addCategoriesReady=false;
           swal({
             title: "Good job!",
             text: "Add Category!",

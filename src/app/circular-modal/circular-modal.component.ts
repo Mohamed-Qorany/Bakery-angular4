@@ -97,48 +97,53 @@ export class CircularModalComponent implements OnInit {
 
     closeAccordion(){this.openAccordions=false;}
 
-    activeItem(item, e) {
-        // var isChecked = e.target.checked;
-        // console.log(item._links.self.href);
-        // console.log(isChecked);
-        swal({
-            title: "Are you sure?",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        }).then((willActive) => {
-            if (willActive) {
-                swal("success!",{icon: "success",});
-                // this._itemService.activateItem(item._links.self.href,isChecked);
-            }else {}
-        });
-    }
-
     openEditItemModal(){
         this.closeCircularModal();
         console.log("edit")
         $('.modal.ItemModal').modal('open');
     }
 
-    deleteItem(item, e) {
+    openCategoriesModal(){$('.modal.CategoriesModal').modal('open');}
+
+    activeItem(e) {
+        var isChecked = e.target.checked;
         swal({
             title: "Are you sure?",
-            text: "are you sure that you want to delete this Item!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
         }).then((willActive) => {
             if (willActive) {
-                // delete request
-                swal("success!",{icon: "success",});
+                this._itemService.activateItem(this.selectedItem._links.self.href,isChecked).subscribe((result) => {
+                    this.selectedItem.active=isChecked;
+                    console.log(result);
+                    swal({title: "Good job!", text: "Active/Deactivate Item!", icon: "success"});
+                });
             }else {}
         });
     }
 
-    openCategoriesModal(){
-        // console.log("edit")
-        $('.modal.CategoriesModal').modal('open');
+    deleteItem(){
+        swal({
+            title: "Are you sure?",
+            text: "Please Confirm Delete This Item!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willActive) => {
+            if (willActive) {
+                this._itemService.deleteItem(this.selectedItem._links.self.href).subscribe((result) => {
+                    console.log(result);
+                    swal({
+                        title: "Good job!",
+                        text: "Delete Item!",
+                        icon: "success"
+                    });
+                    //reload page to refresh items list
+                    window.location.reload();
+                });
+            }else {}
+        });
     }
-
 
 }

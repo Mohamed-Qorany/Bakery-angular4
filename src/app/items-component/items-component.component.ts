@@ -67,23 +67,28 @@ export class ItemsComponentComponent implements OnInit {
 
   constructor(private _itemService: ItemsServiceService) {}
   ngOnInit() {
+    this.getItems();
+  }
+
+
+  getItems(){
     this._itemService.getItems().subscribe((result) => {
-      this.allFavorites = result._embedded.item;
-      for (let item of this.allFavorites) {
-        item.subDescription= item.description.substring(0,255);
-        item.activeIcon= item.icon;
-        //get item icons
-        this._itemService.getItemIcons(item._links.icons.href).subscribe((result) => {
-          item.itemIcons= result._embedded.icon;
-        });
+      for (let item of result._embedded.item) {
+        if(item.description){
+          item.subDescription= item.description.substring(0,255);
+          item.activeIcon= item.icon;
+          //get item icons
+          this._itemService.getItemIcons(item._links.icons.href).subscribe((result) => {
+            item.itemIcons= result._embedded.icon;
+          });
+          this.allFavorites.push(item);
+        }
       }
       this.total = this.allFavorites.length;
       this.favorites=this.allFavorites.slice(this.from, this.to);
       this.favoritLoaded=true;
     });
   }
-
-
 
 
   //paganation controls
@@ -103,27 +108,9 @@ export class ItemsComponentComponent implements OnInit {
 
   openItemDescription(currentItem){
     this._itemService.getItem(currentItem._links.self.href).subscribe((result) => {
-
-      this.currentItem = result;
-      this.currentItem.Categories=[{
-        "name" : "Drink",
-        "nominalCode" : "C00L123",
-        "categoryIcon" : null,
-        "_links" : {
-          "self" : {
-            "href" : "https://item.cfapps.io/cm/category/1"
-          },
-          "category" : {
-            "href" : "https://item.cfapps.io/cm/category/1"
-          },
-          "parentCategory" : {
-            "href" : "https://item.cfapps.io/cm/category/1/parentCategory"
-          }
-        }
-      }];
-
-      this.currentItem.activeIcon= result.icon;
-      this.currentItem.itemIcons=currentItem.itemIcons;
+        this.currentItem = result;
+        this.currentItem.activeIcon= result.icon;
+        this.currentItem.itemIcons=currentItem.itemIcons;
     });
     this.itemModalTitleIcon="edit";
     this.itemModalTitle="Edit Item";
@@ -156,4 +143,7 @@ export class ItemsComponentComponent implements OnInit {
     this.itemModalTitle="Edit Item";
     $('.modal.ItemModal').modal('open');
   }
+
+
+
 }

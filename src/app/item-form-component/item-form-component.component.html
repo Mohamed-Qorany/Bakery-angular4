@@ -1,13 +1,13 @@
 <div class="modal modal-fixed-footer ItemModal" style="top:-10%;">
     <div class="modal-header" style="background: #F5F5F5"><i class="material-icons left">{{itemModalTitleIcon}}</i>{{itemModalTitle}}</div>
     <div class="modal-content">
-        <div class="progress favLoader" id="favLoader" *ngIf="!submitSuccess"><div class="indeterminate"></div></div>
+        <div class="progress favLoader" *ngIf="formSubmit"><div class="indeterminate"></div></div>
 
 
 
 
 
-        <div class="row" *ngIf="submitSuccess" style="padding: 20px 10px 10px 10px;">
+        <div class="row" *ngIf="!formSubmit" style="padding: 20px 10px 10px 10px;">
             <div class="col s12">
                 <div class="row">
                     <div class="input-field col l5 m6 s12 modalInput"><input placeholder="Name" type="text" [(ngModel)] = "selectedItem.name"></div>
