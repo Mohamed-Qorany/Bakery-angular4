@@ -1,12 +1,12 @@
 <div class="SelectedWorkletTitleContainer">
   <div class="center-align left"><img src="assets/resources/IMG/icons/009-star.png" alt=""/></div>
-  <span class="left">{{workletName}}</span>
+  <span class="left">Item</span>
 </div>
 
 
 <div class="workletContainer">
   <div class="workletContainerInner animated fadeIn" >
-    <div class="progress favLoader" id="favLoader" *ngIf="!favoritLoaded"><div class="indeterminate"></div></div>
+    <div class="progress favLoader" *ngIf="!itemLoading"><div class="indeterminate"></div></div>
     <div class="workletContainerInnerContent" id="favContent">
       <div class="myContainer ListLayOut" >
         <div class="row workletOperations" onclick="$('.listViewDropDown').fadeOut('fast');">
@@ -128,14 +128,14 @@
 </div>
 
 
-<app-circular-modal [selectedItem]="currentItem" *ngIf="currentItem !== defaultCurrentItem"
-                    [itemModalTitle]="itemModalTitle"
-                    [itemModalTitleIcon]="itemModalTitleIcon"></app-circular-modal>
-<app-item-form-component
-        [itemModalTitle]="itemModalTitle"
-        [itemModalTitleIcon]="itemModalTitleIcon"
-        [selectedItem]="currentItem"></app-item-form-component>
 
 
+
+
+<app-circular-modal [selectedItem]="currentItem"></app-circular-modal>
+<app-add-item></app-add-item>
+<div class="center-align itemDescriptionPreloader" *ngIf="itemDescriptionLoading">
+  <app-circular-pre-loader></app-circular-pre-loader>
+</div>
 
 

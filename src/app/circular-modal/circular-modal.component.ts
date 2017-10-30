@@ -6,9 +6,6 @@ declare var $ :any;
 import * as swal from 'sweetalert';
 
 
-
-
-
 @Component({
   selector: 'app-circular-modal',
   templateUrl: './circular-modal.component.html',
@@ -23,16 +20,6 @@ export class CircularModalComponent implements OnInit {
     values:boolean=false;
     categories:boolean=false;
     openAccordions:boolean=true;
-
-
-
-    //Item Modal
-    @Input()
-    itemModalTitle:String=" ";
-
-    @Input()
-    itemModalTitleIcon:String=" ";
-
 
 
 

@@ -19,13 +19,10 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css",
         "../node_modules/materialize-css/dist/css/materialize.min.css",
         "../node_modules/datatables.net-dt/css/jquery.dataTables.css",
         "../node_modules/animate.css/animate.min.css",
-        "../src/assets/resources/css/HomePage.css",
-        "../src/assets/resources/css/mediaQuery.css"
-
+        "styles.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",

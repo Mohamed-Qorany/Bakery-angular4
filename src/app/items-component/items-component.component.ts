@@ -1,10 +1,9 @@
-import { Component, OnInit,Directive, Output, EventEmitter, Input, SimpleChange } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {ItemsServiceService} from './items-service.service';
 import 'rxjs/Rx';
 
 declare var jquery:any;
 declare var $ :any;
-import * as swal from 'sweetalert';
 
 @Component({
   selector: 'app-items-component',
@@ -14,15 +13,14 @@ import * as swal from 'sweetalert';
 })
 export class ItemsComponentComponent implements OnInit {
 
-  workletName:String="Item";
   viewType="grid";
   workletItemsFilterText;
   allFavorites:any[]=[];
   favorites:any[]=[];
   orderByFields:any[]= [{field:'title'},{field:'description'},{field:'price'}];
   orderByValue="title";
-  favoritLoaded=false;
-
+  itemLoading:boolean=false;
+  itemDescriptionLoading:boolean=false;
 
   defaultCurrentItem:any={
     name: null, description: null, icon: null, active: false,
@@ -41,17 +39,7 @@ export class ItemsComponentComponent implements OnInit {
     },
     Categories:[]
   };
-
-
   currentItem:any;
-
-
-
-  //Item Modal
-  itemModalTitle:String=" ";
-  itemModalTitleIcon:String=" ";
-
-
 
   //paganation
   loading = false;
@@ -85,12 +73,12 @@ export class ItemsComponentComponent implements OnInit {
       }
       this.total = this.allFavorites.length;
       this.favorites=this.allFavorites.slice(this.from, this.to);
-      this.favoritLoaded=true;
+      this.itemLoading=true;
     });
   }
 
 
-  //paganation controls
+  //Items pagination controls
   getFavorites(): void {
     this.from = (this.page*this.limit)-this.limit;
     this.to = this.page*this.limit;
@@ -106,15 +94,21 @@ export class ItemsComponentComponent implements OnInit {
   setItemsView(viewType){this.viewType=viewType;}
 
   openItemDescription(currentItem){
+    this.itemDescriptionLoading=true;
     this._itemService.getItem(currentItem._links.self.href).subscribe((result) => {
-        this.currentItem = result;
-        this.currentItem.activeIcon= result.icon;
-        this.currentItem.itemIcons=currentItem.itemIcons;
-    });
-    this.itemModalTitleIcon="edit";
-    this.itemModalTitle="Edit Item";
-    $('body').css({overflow: 'hidden', height: '100%'});
-    $('#openCircularModal').fadeIn();
+          this.currentItem = result;
+          this.currentItem.activeIcon= result.icon;
+          this.currentItem.itemIcons=currentItem.itemIcons;
+      },
+      (err) => console.error(err),
+      () => {
+        this.itemDescriptionLoading=false;
+        if(this.currentItem.product == null){this.currentItem.product = this.defaultCurrentItem.product;}
+        if(this.currentItem.value == null){this.currentItem.value = this.defaultCurrentItem.value;}
+        $('body').css({overflow: 'hidden', height: '100%'});
+        $('#openCircularModal').fadeIn();
+      }
+    );
   }
 
   viewitemImg(index){
@@ -131,11 +125,6 @@ export class ItemsComponentComponent implements OnInit {
 
   getValueFromSelect(val){this.orderByValue=val;}
 
-  openAddItemModal(){
-    this.itemModalTitleIcon="add";
-    this.itemModalTitle="Add New Item";
-    this.currentItem = this.defaultCurrentItem;
-    $('.tooltipped').tooltip('remove');$('.modal.ItemModal').modal('open');
-  }
+  openAddItemModal(){$('.tooltipped').tooltip('remove');$('.modal.ItemModal').modal('open');}
 
 }

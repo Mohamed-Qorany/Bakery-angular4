@@ -5,20 +5,15 @@ declare var jquery:any;
 declare var $ :any;
 import * as swal from 'sweetalert';
 
-
 @Component({
-  selector: 'app-item-form-component',
-  templateUrl: './item-form-component.component.html',
-  styleUrls: ['./item-form-component.component.css']
+  selector: 'app-add-item',
+  templateUrl: './add-item.component.html',
+  styleUrls: ['./add-item.component.css'],
+  providers: [ItemsServiceService]
 })
-export class ItemFormComponentComponent implements OnInit {
+export class AddItemComponent implements OnInit {
 
-  @Input()
-  itemModalTitle:String=" ";
-  @Input()
-  itemModalTitleIcon:String=" ";
-  @Input()
-  selectedItem;
+
 
   formSubmit:boolean=false;
   defaultItem:any={
@@ -38,9 +33,12 @@ export class ItemFormComponentComponent implements OnInit {
     },
     Categories:[]
   };
+  itemObject:any;
 
   constructor(private _itemService: ItemsServiceService) { }
-  ngOnInit() {}
+  ngOnInit() {
+    this.itemObject = this.defaultItem;
+  }
 
 
 
@@ -55,6 +53,7 @@ export class ItemFormComponentComponent implements OnInit {
       if (willDelete) {
         // clear form
         $('.modal.ItemModal').modal('close');
+        this.itemObject = this.defaultItem;
       }else {
         $('.modal.ItemModal').modal('open');
       }
@@ -63,9 +62,8 @@ export class ItemFormComponentComponent implements OnInit {
 
   addItem(){
     this.formSubmit=true;
-    this._itemService.addItem(this.selectedItem).subscribe((result) => {
-      console.log(result);
-      this.selectedItem=this.defaultItem;
+    this._itemService.addItem(this.itemObject).subscribe((result) => {
+      this.itemObject=this.defaultItem;
       this.formSubmit=false;
       swal({
         title: "Good job!",
@@ -76,25 +74,5 @@ export class ItemFormComponentComponent implements OnInit {
         window.location.reload();
       });
     });
-  }
-
-  editItem(){
-    this.formSubmit=true;
-    this._itemService.editItem(this.selectedItem._links.self.href, this.selectedItem).subscribe((result) => {
-      console.log(result);
-      this.formSubmit=false;
-      swal({
-        title: "Good job!",
-        text: "Edit Item!",
-        icon: "success",
-      }).then((willDelete) => {
-        //reload page to refresh items list
-        window.location.reload();
-      });
-    });
-  }
-
-  submitItem(){
-    if(this.itemModalTitleIcon=="add"){this.addItem();}else{this.editItem();}
   }
 }

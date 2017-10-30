@@ -16,9 +16,10 @@ import { FilterPipe } from './filter.pipe';
 import { SortByPipe } from './sort-by.pipe';
 import { CircularPreLoaderComponent } from './circular-pre-loader/circular-pre-loader.component';
 import { CircularModalComponent } from './circular-modal/circular-modal.component';
-import { ItemFormComponentComponent } from './item-form-component/item-form-component.component';
 import { ItemsComponentComponent } from './items-component/items-component.component';
 import { ItemCategoriesModalComponent } from './item-categories-modal/item-categories-modal.component';
+import { AddItemComponent } from './add-item/add-item.component';
+import { EditItemComponent } from './edit-item/edit-item.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashBoardComponent },
@@ -38,9 +39,10 @@ const appRoutes: Routes = [
     SortByPipe,
     CircularPreLoaderComponent,
     CircularModalComponent,
-    ItemFormComponentComponent,
     ItemsComponentComponent,
-    ItemCategoriesModalComponent
+    ItemCategoriesModalComponent,
+    AddItemComponent,
+    EditItemComponent
   ],
   imports: [
     BrowserModule, DataTablesModule ,HttpModule, FormsModule,RouterModule.forRoot(appRoutes)

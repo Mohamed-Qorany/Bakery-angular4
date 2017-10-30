@@ -41,7 +41,6 @@
 
 
 
-
 @media only screen and (max-width : 600px) {
     .ItemModal .selectedImageContainer >div:nth-child(1),.ItemModal .selectedImageContainer >div:nth-child(3) {
         height: auto; text-align: left;
