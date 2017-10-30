@@ -99,7 +99,6 @@ export class CircularModalComponent implements OnInit {
 
     openEditItemModal(){
         this.closeCircularModal();
-        console.log("edit")
         $('.modal.ItemModal').modal('open');
     }
 

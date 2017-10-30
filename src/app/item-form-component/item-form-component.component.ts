@@ -22,25 +22,21 @@ export class ItemFormComponentComponent implements OnInit {
 
   formSubmit:boolean=false;
   defaultItem:any={
-    "name": "", "description": "", "icon": "", "active": false,
-    "product": {
-      "upc": "",
-      "brand": {"brandName": "", "brandRate": "", "brandLogo": ""},
-      "dimesion": {"width": 0, "height": 0, "length": 0, "breadth": 0, "depth": 0, "weight": 0},
-      "characteristic": {"lequid": false, "fraguile": false}
+    name: null, description: null, icon: null, active: false,
+    product: {
+      upc: null,
+      brand: {brandName: null, brandRate: null, brandLogo: null},
+      dimesion: {width: 0, height: 0, length: 0, breadth: 0, depth: 0, weight: 0},
+      characteristic: {lequid: false, fraguile: false}
     },
-    "value": {
-      "quantity": 0, "unit": "", "price": 0, "cost": 0, "deliveryPrice": 0, "deliveryCost": 0, "taxExempted": false,
-      "taxLevel": {
-        "taxUnit": "", "costTax": 0, "priceTax": 0,
-        "taxGroup": []
-      },
-      "discount": 0,
-      "exception": [],
-      "restockLevel": 0, "reorderThreshold": 0
+    value: {
+      quantity: 0, unit: null, price: 0, cost: 0, deliveryPrice: 0, deliveryCost: 0, taxExempted: false,
+      taxLevel: {taxUnit: null, costTax: 0, priceTax: 0, taxGroup: []},
+      discount: 0,
+      exception: [],
+      restockLevel: 0, reorderThreshold: 0
     },
-    "Categories":[]
-
+    Categories:[]
   };
 
   constructor(private _itemService: ItemsServiceService) { }

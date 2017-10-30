@@ -22,30 +22,28 @@ export class ItemsComponentComponent implements OnInit {
   orderByFields:any[]= [{field:'title'},{field:'description'},{field:'price'}];
   orderByValue="title";
   favoritLoaded=false;
-  currentItem:any={
-    "name": "", "description": "", "icon": "", "active": false,
-    "product": {
-      "upc": "",
-      "brand": {"brandName": "", "brandRate": "", "brandLogo": ""},
-      "dimesion": {"width": 0, "height": 0, "length": 0, "breadth": 0, "depth": 0, "weight": 0},
-      "characteristic": {"lequid": false, "fraguile": false}
-    },
-    "value": {
-      "quantity": 0, "unit": "", "price": 0, "cost": 0, "deliveryPrice": 0, "deliveryCost": 0, "taxExempted": false,
-      "taxLevel": {
-        "taxUnit": "", "costTax": 0, "priceTax": 0,
-        "taxGroup": []
-      },
-      "discount": 0,
-      "exception": [],
-      "restockLevel": 0, "reorderThreshold": 0
-    },
-    "Categories":[]
 
+
+  defaultCurrentItem:any={
+    name: null, description: null, icon: null, active: false,
+    product: {
+      upc: null,
+      brand: {brandName: null, brandRate: null, brandLogo: null},
+      dimesion: {width: 0, height: 0, length: 0, breadth: 0, depth: 0, weight: 0},
+      characteristic: {lequid: false, fraguile: false}
+    },
+    value: {
+      quantity: 0, unit: null, price: 0, cost: 0, deliveryPrice: 0, deliveryCost: 0, taxExempted: false,
+      taxLevel: {taxUnit: null, costTax: 0, priceTax: 0, taxGroup: []},
+      discount: 0,
+      exception: [],
+      restockLevel: 0, reorderThreshold: 0
+    },
+    Categories:[]
   };
 
 
-
+  currentItem:any;
 
 
 
@@ -67,6 +65,7 @@ export class ItemsComponentComponent implements OnInit {
 
   constructor(private _itemService: ItemsServiceService) {}
   ngOnInit() {
+    this.currentItem = this.defaultCurrentItem;
     this.getItems();
   }
 
@@ -135,15 +134,8 @@ export class ItemsComponentComponent implements OnInit {
   openAddItemModal(){
     this.itemModalTitleIcon="add";
     this.itemModalTitle="Add New Item";
+    this.currentItem = this.defaultCurrentItem;
     $('.tooltipped').tooltip('remove');$('.modal.ItemModal').modal('open');
   }
-
-  openEditItemModal(){
-    this.itemModalTitleIcon="edit";
-    this.itemModalTitle="Edit Item";
-    $('.modal.ItemModal').modal('open');
-  }
-
-
 
 }

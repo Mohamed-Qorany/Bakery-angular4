@@ -128,7 +128,9 @@
 </div>
 
 
-<app-circular-modal [selectedItem]="currentItem" [itemModalTitle]="itemModalTitle" [itemModalTitleIcon]="itemModalTitleIcon"></app-circular-modal>
+<app-circular-modal [selectedItem]="currentItem" *ngIf="currentItem !== defaultCurrentItem"
+                    [itemModalTitle]="itemModalTitle"
+                    [itemModalTitleIcon]="itemModalTitleIcon"></app-circular-modal>
 <app-item-form-component
         [itemModalTitle]="itemModalTitle"
         [itemModalTitleIcon]="itemModalTitleIcon"

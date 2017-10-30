@@ -4,14 +4,15 @@
         <div class="progress favLoader" *ngIf="formSubmit"><div class="indeterminate"></div></div>
 
 
-
-
-
         <div class="row" *ngIf="!formSubmit" style="padding: 20px 10px 10px 10px;">
             <div class="col s12">
                 <div class="row">
-                    <div class="input-field col l5 m6 s12 modalInput"><input placeholder="Name" type="text" [(ngModel)] = "selectedItem.name"></div>
-                    <div class="input-field col l5 m6 s12 modalInput"><input type="text" [(ngModel)] = "selectedItem.icon" placeholder="Icon"></div>
+                    <div class="input-field col l5 m6 s12 modalInput">
+                        <input placeholder="Name" type="text" [(ngModel)] = "selectedItem.name">
+                    </div>
+                    <div class="input-field col l5 m6 s12 modalInput">
+                        <input type="text" [(ngModel)] = "selectedItem.icon" placeholder="Icon">
+                    </div>
                     <div class="col l2 m6 s12">
                         <p><input type="checkbox" id="Active" [checked]="selectedItem.active" (change)="selectedItem.active=$event.target.checked;" /><label for="Active">Active</label></p>
                     </div>
